@@ -64,6 +64,6 @@ public class InventoryActivity extends AppCompatActivity {
 
             }
         });
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout) );
     }
 }
