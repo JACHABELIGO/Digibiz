@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/baseLayout">
 
     <TextView
@@ -20,13 +20,14 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:id="@+id/product_name"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/"
         android:padding="10dp"
         android:elevation="10dp"
+        android:layout_marginTop="15dp"
         android:hint="Product Name"/>
 
     <LinearLayout
@@ -34,12 +35,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp">
 
         <EditText
             android:id="@+id/price"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:ems="10"
             android:fontFamily="@font/"
@@ -52,7 +54,7 @@
         <EditText
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:ems="10"
             android:fontFamily="@font/"
@@ -66,12 +68,13 @@
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:padding="10dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
-        android:elevation="10dp"/>
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:text="Button" />
 
 
 </LinearLayout>
