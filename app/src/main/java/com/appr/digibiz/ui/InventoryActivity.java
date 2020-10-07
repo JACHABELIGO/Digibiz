@@ -29,5 +29,22 @@ public class InventoryActivity extends AppCompatActivity {
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
         viewPager.setAdapter(pageAdapter);
+
+        tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }
