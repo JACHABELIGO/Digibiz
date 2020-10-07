@@ -14,8 +14,21 @@
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/colorDivider"
         app:tabIndicatorColor="@color/colorDivider"
-        app:tabTextColor="@color/colorPrimaryText" />
+        app:tabTextColor="@color/colorPrimaryText">
 
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab-available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AVAILABLE"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab-outOfStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OUT OF STOCK"/>
+
+    </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
