@@ -1,8 +1,10 @@
-package com.appr.digibiz;
+package com.appr.digibiz.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.appr.digibiz.R;
 
 public class MainActivity extends AppCompatActivity {
 
