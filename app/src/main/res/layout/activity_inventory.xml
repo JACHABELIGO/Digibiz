@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTextIcons"
-        app:tabIndicatorColor="@color/colorDivider"
-        app:tabMode="scrollable"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/colorDivider"
+        app:tabIndicatorColor="@color/colorDivider"
         app:tabTextColor="@color/colorPrimaryText" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-   
+
 </RelativeLayout>

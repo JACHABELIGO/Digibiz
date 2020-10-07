@@ -6,32 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorTextIcons"
-        android:elevation="6dp"
-        android:minHeight="?attr/actionBarSize"/>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        app:tabMode="scrollable"
-        android:layout_below="@id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="6dp"
-        app:tabTextColor="@color/colorPrimaryText"
-        app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabIndicator="@color/colorTextIcons"
-        android:minHeight="?attr/actionBarSize"/>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_below="@id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
 </RelativeLayout>
