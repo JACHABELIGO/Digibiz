@@ -17,16 +17,16 @@
         app:tabTextColor="@color/colorPrimaryText">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab-available"
+            android:id="@+id/tab_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AVAILABLE"/>
+            android:text="@string/available"/>
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab-outOfStock"
+            android:id="@+id/tab_outOfStock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OUT OF STOCK"/>
+            android:text="@string/out_of_stock"/>
 
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
