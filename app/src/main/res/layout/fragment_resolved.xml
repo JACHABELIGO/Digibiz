@@ -24,8 +24,8 @@
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/adamina"
             android:textColor="@color/colorPrimaryDark"
-            android:text="You don't have any active transactions!"
-            android:textSize="18dp" />
+            android:text="You don't have any resolved transactions!"
+            android:textSize="15dp" />
 
 
 

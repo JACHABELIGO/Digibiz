@@ -53,6 +53,7 @@ public class tabs extends AppCompatActivity {
         viewPagerAdapter.addFragment(activeFragment,"ACTIVE");
         viewPagerAdapter.addFragment(resolvedFragment,"RESOLVED");
         viewPagerAdapter.addFragment(customerFragment,"CUSTOMERS");
+
         viewPager.setAdapter(viewPagerAdapter);
     }
 

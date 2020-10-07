@@ -26,7 +26,7 @@
             android:fontFamily="@font/adamina"
             android:textColor="@color/colorPrimaryDark"
             android:text="You don't have any active transactions!"
-            android:textSize="18dp" />
+            android:textSize="15dp" />
 
 
 
