@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.SignupActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#3F3D56"
-    tools:context=".ui.SignupActivity">
+    android:background="#3F3D56">
+<LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:background="@drawable/sign_up_welcome"
@@ -25,15 +29,13 @@
             android:textSize="20sp" />
         <TextView
             android:textColor="#8B7668"
+            android:fontFamily="@font/arvo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Start by creating an account to get access to \n all of our amazing tools"
             android:textAlignment="center" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
@@ -49,6 +51,7 @@
                 android:hint="Business name"
                 android:paddingBottom="10dp"
                 android:textColorHint="#3F3D56"
+                app:endIconTint="#3F3D56"
                 app:boxBackgroundMode="filled"
                 app:boxBackgroundColor="#FFF"
                 app:boxStrokeWidth="2dp"
@@ -75,6 +78,7 @@
                 app:boxBackgroundMode="filled"
                 app:boxStrokeWidth="2dp"
                 app:boxStrokeWidthFocused="4dp"
+                app:endIconTint="#3F3D56"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
                 app:hintTextColor="#3F3D56">
@@ -92,12 +96,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone number"
+                app:placeholderText="+254721804882"
                 android:paddingBottom="10dp"
                 android:textColorHint="#3F3D56"
                 app:boxBackgroundColor="#FFF"
                 app:boxBackgroundMode="filled"
                 app:boxStrokeWidth="2dp"
                 app:boxStrokeWidthFocused="4dp"
+                app:endIconTint="#3F3D56"
                 app:endIconMode="clear_text"
                 app:helperTextEnabled="true"
                 app:helperText="Should be of the form +254 712 345 678"
@@ -120,6 +126,7 @@
                 android:hint="Password"
                 android:paddingBottom="10dp"
                 android:textColorHint="#3F3D56"
+                app:endIconTint="#3F3D56"
                 app:boxBackgroundColor="#FFF"
                 app:boxBackgroundMode="filled"
                 app:boxStrokeWidth="2dp"
@@ -141,6 +148,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Confirm password"
                 android:paddingBottom="10dp"
+                app:endIconTint="#3F3D56"
                 android:textColorHint="#3F3D56"
                 app:boxBackgroundColor="#FFF"
                 app:boxBackgroundMode="filled"
@@ -179,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:text="Already have an account? Log in here"/>
         </LinearLayout>
-    </ScrollView>
 
 
 </LinearLayout>
+</ScrollView>
