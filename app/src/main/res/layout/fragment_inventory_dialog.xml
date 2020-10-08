@@ -8,7 +8,7 @@
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     android:padding="30dp"
-    android:background="@color/colorAccent">
+    android:background="@color/lightOrange">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,8 +27,9 @@
             android:padding="10dp"
             android:text="New Inventory"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
             android:textStyle="normal"
+            android:textSize="20dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:typeface="monospace" />
@@ -45,19 +46,16 @@
 
     </LinearLayout>
 
-
-
-
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/product_name"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:fontFamily="@font/"
         android:padding="10dp"
         android:elevation="10dp"
+        android:textSize="20dp"
+        android:fontFamily="@fonts/Arvo-italic"
         android:layout_marginTop="15dp"
         android:hint="@string/product_name"/>
 
@@ -67,7 +65,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/price"
@@ -79,6 +77,7 @@
             android:padding="10dp"
             android:layout_marginRight="25dp"
             android:elevation="10dp"
+            android:textSize="20dp"
             android:background="@color/white"
             android:inputType="number"
             android:layout_alignParentStart="true"
@@ -96,7 +95,8 @@
             android:elevation="10dp"
             android:layout_marginLeft="25dp"
             android:ems="10"
-            android:fontFamily="@font/"
+            android:textSize="20dp"
+            android:fontFamily="@fonts/Arvo-Bold"
             android:inputType="number"
             android:padding="10dp"
             android:text="@string/quantity"
@@ -108,17 +108,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="10dp"
         android:elevation="10dp"
         android:padding="10dp"
         android:hint="Submit"
+        android:background="@color/maroon"
         android:text="@string/button" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"></LinearLayout>
+
 
 
 </LinearLayout>
