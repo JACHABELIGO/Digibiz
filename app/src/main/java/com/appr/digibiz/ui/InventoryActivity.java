@@ -1,33 +1,29 @@
 package com.appr.digibiz.ui;
 
+import android.os.Build;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Build;
-import android.os.Bundle;
-
 import com.appr.digibiz.PageAdapter;
 import com.appr.digibiz.R;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class InventoryActivity extends AppCompatActivity {
-    TabLayout tab_layout;
+    @BindView(R.id.tab_layout) TabLayout tab_layout;
+    @BindView(R.id.view_pager) ViewPager viewPager;
     PageAdapter pageAdapter;
-    TabItem tab_available;
-    TabItem tab_outOfStock;
-    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-
-        tab_layout = findViewById(R.id.tab_layout);
-        tab_available = findViewById(R.id.tab_available);
-        tab_outOfStock = findViewById(R.id.tab_outOfStock);
-        viewPager = findViewById(R.id.viewPager);
+        ButterKnife.bind(this);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
         viewPager.setAdapter(pageAdapter);
