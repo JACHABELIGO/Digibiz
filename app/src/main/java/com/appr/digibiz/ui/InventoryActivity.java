@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.appr.digibiz.PageAdapter;
+import com.appr.digibiz.adapters.PageAdapter;
 import com.appr.digibiz.R;
 import com.google.android.material.tabs.TabLayout;
 
