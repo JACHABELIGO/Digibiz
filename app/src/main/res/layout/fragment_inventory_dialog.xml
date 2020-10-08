@@ -27,7 +27,7 @@
             android:padding="10dp"
             android:text="New Inventory"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/dark"
             android:textStyle="normal"
             android:textSize="20dp"
             android:layout_alignParentStart="true"
@@ -42,7 +42,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/top_icon"
-            app:srcCompat="@drawable/ic_close_white_24dp" />
+            app:srcCompat="@drawable/ic_close_black_48dp" />
 
     </LinearLayout>
 
@@ -55,9 +55,10 @@
         android:padding="10dp"
         android:elevation="10dp"
         android:textSize="20dp"
-        android:fontFamily="@fonts/Arvo-italic"
+        android:background="@color/white"
         android:layout_marginTop="15dp"
-        android:hint="@string/product_name"/>
+        android:hint="Product name"
+        android:text="@string/product_name"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +74,6 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:ems="10"
-            android:fontFamily="@font/"
             android:padding="10dp"
             android:layout_marginRight="25dp"
             android:elevation="10dp"
@@ -82,6 +82,7 @@
             android:inputType="number"
             android:layout_alignParentStart="true"
             android:text="@string/price"
+            android:hint="Price"
             android:layout_alignParentLeft="true" />
 
         <EditText
@@ -96,7 +97,6 @@
             android:layout_marginLeft="25dp"
             android:ems="10"
             android:textSize="20dp"
-            android:fontFamily="@fonts/Arvo-Bold"
             android:inputType="number"
             android:padding="10dp"
             android:text="@string/quantity"
@@ -104,7 +104,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/buttonA"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
@@ -112,9 +112,9 @@
         android:layout_marginRight="10dp"
         android:elevation="10dp"
         android:padding="10dp"
-        android:hint="Submit"
+        android:textColor="@color/white"
         android:background="@color/maroon"
-        android:text="@string/button" />
+        android:text="Submit" />
 
 
 

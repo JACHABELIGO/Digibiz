@@ -6,6 +6,7 @@
     <color name="white">#FFFFFF</color>
     <color name="lightOrange">#F7E9D3</color>
     <color name="maroon">#6A4C07</color>
+    <color name="dark">#000000</color>
 
 
 </resources>
