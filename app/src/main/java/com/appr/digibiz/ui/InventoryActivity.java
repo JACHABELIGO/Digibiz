@@ -1,10 +1,14 @@
 package com.appr.digibiz.ui;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.adapters.PageAdapter;
@@ -14,9 +18,10 @@ import com.google.android.material.tabs.TabLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InventoryActivity extends AppCompatActivity {
+public class InventoryActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.tab_layout) TabLayout tab_layout;
     @BindView(R.id.view_pager) ViewPager viewPager;
+    @BindView(R.id.buttonA) Button mFindSubmitButton;
     PageAdapter pageAdapter;
 
     @Override
@@ -24,6 +29,12 @@ public class InventoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         ButterKnife.bind(this);
+
+        mFindSubmitButton.setOnClickListener(this);
+
+        FragmentManager fm = getSupportFragmentManager();
+        InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
+        inventoryDialogFragment.show(fm, "Sample fragment");
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
         viewPager.setAdapter(pageAdapter);
@@ -61,5 +72,14 @@ public class InventoryActivity extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout) );
+    }
+
+    @Override
+    public void onClick(View v){
+        if (v == mFindSubmitButton){
+            Intent intent = new Intent(InventoryActivity.this, InventoryDialogFragment.class);
+            startActivity(intent);
+        }
+
     }
 }
