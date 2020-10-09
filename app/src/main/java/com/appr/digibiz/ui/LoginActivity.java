@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
     private void createAuthProgressDialog() {
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage("Getting you set up...");
+        mProgressDialog.setMessage("Logging you in");
         mProgressDialog.setCancelable(false);
     }
     private void loginWithPassword() {
@@ -113,8 +113,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         mProgressDialog.dismiss();
                         if(!task.isSuccessful()) {
-                            Snackbar.make(mLoginButton, "Authentication failed", Snackbar.LENGTH_SHORT)
-                                    .setBackgroundTint(getResources().getColor(R.color.colorPrimary))
+                            Snackbar.make(mLoginButton, "Wrong password and/or email", Snackbar.LENGTH_LONG)
+                                    .setBackgroundTint(getResources().getColor(R.color.error_dark))
                                     .setActionTextColor(getResources().getColor(R.color.colorPrimaryDark))
                                     .show();
                         }

@@ -122,13 +122,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         mProgressDialog.dismiss();
                         if(task.isSuccessful()) {
                             Snackbar.make(mSignupButton, "Successful", Snackbar.LENGTH_SHORT)
-                                    .setBackgroundTint(getResources().getColor(R.color.colorPrimary))
+                                    .setBackgroundTint(getResources().getColor(R.color.colorAccent))
                                     .setActionTextColor(getResources().getColor(R.color.colorPrimaryDark))
                                     .show();
                             storeValuesInDB(businessName, email, phone);
                         } else {
                             Snackbar.make(mSignupButton, "Error! Try again", Snackbar.LENGTH_SHORT)
-                                    .setBackgroundTint(getResources().getColor(R.color.colorPrimary))
+                                    .setBackgroundTint(getResources().getColor(R.color.colorAccent))
                                     .setActionTextColor(getResources().getColor(R.color.colorPrimaryDark))
                                     .show();
                         }
