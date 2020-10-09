@@ -1,11 +1,13 @@
 package com.appr.digibiz.ui;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
@@ -19,7 +21,15 @@ public class InventoryDialogFragment extends DialogFragment {
         View rootView = inflater.inflate(R.layout.fragment_inventory_dialog, container, false);
 
         Button submitButton = (Button) rootView.findViewById(R.id.buttonA);
+        ImageView cancelIcon = (ImageView) rootView.findViewById(R.id.cancel_action);
 
+        cancelIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+
+        });
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
