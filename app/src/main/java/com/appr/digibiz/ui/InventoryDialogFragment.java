@@ -34,11 +34,15 @@ public class InventoryDialogFragment extends DialogFragment {
 
         });
 
+        final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
+        int selectedId = checkedViewGroup.getId();
+        final ViewGroup checkedviewGroup = (ViewGroup) rootView.findViewById(selectedId);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                Log.d("testing");
+                Log.d("testing", checkedviewGroup.toString());
+                dismiss();
 
             }
         });
