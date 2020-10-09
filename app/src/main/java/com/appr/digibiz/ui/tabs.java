@@ -12,6 +12,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.fragments.ActiveFragment;
+import com.appr.digibiz.fragments.CustomerFragment;
+import com.appr.digibiz.fragments.ResolvedFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class tabs extends AppCompatActivity {
     ViewPager viewPager;
 
     private ActiveFragment activeFragment;
-    private  ResolvedFragment resolvedFragment;
+    private ResolvedFragment resolvedFragment;
     private CustomerFragment customerFragment;
 
     @Override

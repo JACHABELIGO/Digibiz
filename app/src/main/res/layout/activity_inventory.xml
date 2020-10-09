@@ -14,8 +14,7 @@
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/colorPrimaryText"
         app:tabIndicatorColor="@color/colorDivider"
-        app:tabTextColor="@color/colorPrimaryText"
-        app:tabSelectedBackgroundColor="@color/colorDivider">
+        app:tabTextColor="@color/colorPrimaryText">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_available"

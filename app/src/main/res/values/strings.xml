@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Digibiz</string>
+
+<!--    firebase node names-->
+    <string name="db_node_users">users</string>
+
+<!--    firebase field names-->
+    <string name="field_business_name">business_name</string>
+    <string name="field_email">email</string>
+    <string name="field_phone_number">phone_number</string>
+    <string name="field_security_level">security_level</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="name">Name</string>
     <string name="product_name">Product Name</string>
