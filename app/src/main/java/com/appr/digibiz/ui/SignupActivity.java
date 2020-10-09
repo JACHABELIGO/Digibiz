@@ -57,6 +57,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         createAuthStateListenter();
         createAuthProgressDialog();
         mSignupButton.setOnClickListener(this);
+        mToLogin.setOnClickListener(this);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             createAccount();
         }
         if (view == mToLogin) {
-            startActivity(new Intent(SignupActivity.this, MainActivity.class));
+            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
         }
     }
 
