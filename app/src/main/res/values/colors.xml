@@ -3,4 +3,15 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorTextIcons">#FFFFFF</color>
+    <color name="colorDivider">#B6B6B6</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorSuccess">#228B22</color>
+    <color name="colorPrimaryLight">#85CBF8</color>
+    <color name="colorSecondaryLight">#ECECF8</color>
+    <color name="colorSecondary">#BAC4E0</color>
+    <color name="colorSecondaryDark">#8F95A7</color>
+    <color name="errorLightRed">#9d0208</color>
+    <color name="errorDarkRed">#6a040f</color>
 </resources>
