@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         mProgressDialog.dismiss();
                         if(!task.isSuccessful()) {
                             Snackbar.make(mLoginButton, "Wrong password and/or email", Snackbar.LENGTH_LONG)
-                                    .setBackgroundTint(getResources().getColor(R.color.error_dark))
+                                    .setBackgroundTint(getResources().getColor(R.color.errorDarkRed))
                                     .setActionTextColor(getResources().getColor(R.color.colorPrimaryDark))
                                     .show();
                         }

@@ -22,14 +22,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arvo_bold"
             android:textColor="#3F3D56"
             android:text="Welcome to DigiBiz"
             android:textAlignment="center"
             android:textSize="20sp" />
         <TextView
             android:textColor="#8B7668"
-            android:fontFamily="@font/arvo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Start by creating an account to get access to \n all of our amazing tools"
@@ -63,7 +61,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arvo"
                     android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,7 +83,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arvo"
                     android:inputType="textEmailAddress"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +108,6 @@
                 app:hintTextColor="#3F3D56">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:fontFamily="@font/arvo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"/>
@@ -138,7 +133,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arvo"
                     android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -161,7 +155,6 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arvo"
                     android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -174,7 +167,6 @@
                 android:text="Sign up"
                 android:textColor="#FFF"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="@font/arvo_bold"
                 android:backgroundTint="#8B7668"/>
 
             <TextView

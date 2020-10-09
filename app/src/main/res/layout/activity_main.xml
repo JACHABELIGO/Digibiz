@@ -35,8 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Invoice account"
-                android:fontFamily="@font/arvo"/>
+                android:text="Invoice account"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
@@ -64,8 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Inventory tracker"
-                android:fontFamily="@font/arvo"/>
+                android:text="Inventory tracker"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
