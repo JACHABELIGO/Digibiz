@@ -11,7 +11,6 @@
     <string name="Submit" />
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="out_of_stock">OUT OF STOCK</string>
     <string name="available">AVAILABLE</string>
     <string name="edit_button">edit_button</string>
