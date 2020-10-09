@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Digibiz</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragments">Hello blank fragment</string>
     <string name="name">Name</string>
     <string name="product_name">Product Name</string>
     <string name="button">Button</string>
