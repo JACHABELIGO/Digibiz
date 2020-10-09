@@ -44,6 +44,7 @@
                     android:layout_marginLeft="95dp"
                     android:fontFamily="@font/adamina"
                     android:text="Ksh 150,000"
+                    android:textStyle="bold"
                     android:textColor="@color/errorLightRed"
                     android:textSize="16sp"/>
             </LinearLayout>
@@ -72,25 +73,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="120dp"
+                        android:layout_marginRight="80dp"
                         android:fontFamily="@font/adamina"
                         android:text="12th Oct, 2020"
                         android:textSize="13sp"/>
-                    <ImageView
+
+                    <ImageButton
+                        android:id="@+id/sendMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/ic_baseline_send_24"
                         android:contentDescription="send_button" />
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/delete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/ic_baseline_delete_24"
                         android:contentDescription="delete_button" />
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
                         android:layout_margin="5dp"
                         android:src="@drawable/ic_baseline_create_24"
                         android:contentDescription="edit_button" />
