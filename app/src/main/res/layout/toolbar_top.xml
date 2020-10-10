@@ -9,12 +9,12 @@
     android:background="@color/colorPrimary"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/baseline_reorder_white_24"
-        android:focusable="true" />
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
+<!--        android:src="@drawable/baseline_reorder_white_24"-->
+<!--        android:focusable="true" />-->
 
     <TextView
         android:id="@+id/toolbar_title"

@@ -22,4 +22,8 @@
     <string name="edit_button">edit_button</string>
     <string name="you_don_t_have_any_active_transactions">You don\'t have any active transactions!</string>
     <string name="inventory">Inventory</string>
+
+<!--    Navigation drawer descriptions-->
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 </resources>

@@ -13,9 +13,9 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_account_settings"
             android:title="Account settings"/>
-        <item android:id="nav_faq"
+        <item android:id="@+id/nav_faq"
             android:title="FAQ"/>
-        <item android:id="nav_about"
+        <item android:id="@+id/nav_about"
             android:title="About"/>
     </group>
 

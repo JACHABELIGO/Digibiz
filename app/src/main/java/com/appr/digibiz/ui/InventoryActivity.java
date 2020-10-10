@@ -1,13 +1,16 @@
 package com.appr.digibiz.ui;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -17,6 +20,7 @@ import com.appr.digibiz.R;
 import com.appr.digibiz.fragments.AvailableFragment;
 import com.appr.digibiz.fragments.OutOfStockFragment;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -28,7 +32,10 @@ import butterknife.ButterKnife;
 public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener{
     TabLayout tab_layout;
     ViewPager viewPager;
-    Toolbar toolbar;
+//    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
 
     private AvailableFragment availableFragment;
     private OutOfStockFragment outOfStockFragment;
@@ -39,12 +46,20 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         setContentView(R.layout.activity_inventory);
         ButterKnife.bind(this);
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.inventory_nav);
         //set the custom toolbar as the default
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+//        //navigation drawer menu
+        toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //set custom title
-        TextView mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(getString(R.string.inventory));
+//        TextView mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+//        mToolbarTitle.setText(getString(R.string.inventory));
 
         tab_layout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
@@ -60,6 +75,14 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         viewPagerAdapter.addFragment(outOfStockFragment, "OUT OF STOCK");
 
         viewPager.setAdapter(viewPagerAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
