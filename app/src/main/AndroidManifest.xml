@@ -14,17 +14,19 @@
 
         <activity android:name=".ui.tabs" android:theme="@style/TabTheme" />
         <activity android:name=".ui.InventoryActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".ui.SignupActivity"/>
         <activity android:name=".ui.LoginActivity" />
         <activity
             android:name=".ui.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".ui.MainActivity"/>
     </application>

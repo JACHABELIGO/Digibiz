@@ -1,10 +1,12 @@
 package com.appr.digibiz.ui;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -13,14 +15,19 @@ import androidx.viewpager.widget.ViewPager;
 import com.appr.digibiz.R;
 import com.appr.digibiz.fragments.AvailableFragment;
 import com.appr.digibiz.fragments.OutOfStockFragment;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class InventoryActivity extends AppCompatActivity {
     TabLayout tab_layout;
     ViewPager viewPager;
+    Toolbar toolbar;
 
     private AvailableFragment availableFragment;
     private OutOfStockFragment outOfStockFragment;
@@ -29,6 +36,11 @@ public class InventoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
+        ButterKnife.bind(this);
+
+        //set the custom toolbar as the default
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         tab_layout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
