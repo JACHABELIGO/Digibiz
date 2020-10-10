@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mToInventory.setOnClickListener(this);
+        mToInvoice.setOnClickListener(this);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,10 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view == mToInventory) {
-            Snackbar.make(mToInventory, "Not yet there :(", Snackbar.LENGTH_LONG)
-                    .setBackgroundTint(getResources().getColor(R.color.colorAccent))
-                    .setActionTextColor(getResources().getColor(R.color.colorPrimaryDark))
-                    .show();
+            startActivity(new Intent(MainActivity.this, InventoryActivity.class));
+        }
+        if(view == mToInvoice) {
+            startActivity(new Intent(MainActivity.this, tabs.class));
         }
     }
 }
