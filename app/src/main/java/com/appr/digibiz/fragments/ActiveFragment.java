@@ -1,4 +1,4 @@
-package com.appr.digibiz.ui;
+package com.appr.digibiz.fragments;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.appr.digibiz.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CustomerFragment#newInstance} factory method to
+ * Use the {@link ActiveFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CustomerFragment extends Fragment {
+public class ActiveFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class CustomerFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public CustomerFragment() {
+    public ActiveFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class CustomerFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment customers.
+     * @return A new instance of fragment active.
      */
     // TODO: Rename and change types and number of parameters
-    public static CustomerFragment newInstance(String param1, String param2) {
-        CustomerFragment fragment = new CustomerFragment();
+    public static ActiveFragment newInstance(String param1, String param2) {
+        ActiveFragment fragment = new ActiveFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class CustomerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customers, container, false);
+        return inflater.inflate(R.layout.fragment_active, container, false);
     }
 }
