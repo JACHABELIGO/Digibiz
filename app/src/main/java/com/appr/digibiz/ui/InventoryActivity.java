@@ -1,6 +1,7 @@
 package com.appr.digibiz.ui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InventoryActivity extends AppCompatActivity {
+public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener{
     TabLayout tab_layout;
     ViewPager viewPager;
     Toolbar toolbar;
@@ -59,6 +60,11 @@ public class InventoryActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(outOfStockFragment, "OUT OF STOCK");
 
         viewPager.setAdapter(viewPagerAdapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
