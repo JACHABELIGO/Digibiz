@@ -41,6 +41,9 @@ public class InventoryActivity extends AppCompatActivity {
         //set the custom toolbar as the default
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //set custom title
+        TextView mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        mToolbarTitle.setText(getString(R.string.inventory));
 
         tab_layout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);

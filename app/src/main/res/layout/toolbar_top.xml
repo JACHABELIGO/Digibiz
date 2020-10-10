@@ -11,11 +11,12 @@
 
     <TextView
         android:id="@+id/toolbar_title"
+        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toolbar Title"
         android:gravity="center"
-        android:textColor="@color/colorSecondaryLight"
-        style="@style/MaterialAlertDialog.MaterialComponents.Title.Text.CenterStacked"/>
+        android:text="Toolbar Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorSecondaryLight" />
 
 </androidx.appcompat.widget.Toolbar>
