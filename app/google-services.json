@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "676269927133",
+    "firebase_url": "https://digibiz-b82e4.firebaseio.com",
+    "project_id": "digibiz-b82e4",
+    "storage_bucket": "digibiz-b82e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676269927133:android:c6ee91d2de6d124be60934",
+        "android_client_info": {
+          "package_name": "com.appr.digibiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676269927133-hfii5nv8ualad7jv259ike0dr73v5sj1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appr.digibiz",
+            "certificate_hash": "102bf09d10cfca4db680deb7731693c6bffda8a8"
+          }
+        },
+        {
+          "client_id": "676269927133-2j8s67jtvfj47gajvefsdnl62ec1g0od.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaTnatsZvFvAXrtZPNkrA13dfRqLuCFWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676269927133-2j8s67jtvfj47gajvefsdnl62ec1g0od.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

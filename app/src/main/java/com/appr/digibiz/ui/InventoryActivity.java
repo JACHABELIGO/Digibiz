@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 public class InventoryActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.tab_layout) TabLayout tab_layout;
     @BindView(R.id.view_pager) ViewPager viewPager;
-    @BindView(R.id.buttonA) Button mFindSubmitButton;
+//    @BindView(R.id.buttonA) Button mFindSubmitButton;
     PageAdapter pageAdapter;
 
     @Override
@@ -30,7 +30,7 @@ public class InventoryActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_inventory);
         ButterKnife.bind(this);
 
-        mFindSubmitButton.setOnClickListener(this);
+//        mFindSubmitButton.setOnClickListener(this);
 
         FragmentManager fm = getSupportFragmentManager();
         InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
@@ -76,10 +76,6 @@ public class InventoryActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v){
-        if (v == mFindSubmitButton){
-            Intent intent = new Intent(InventoryActivity.this, InventoryDialogFragment.class);
-            startActivity(intent);
-        }
 
     }
 }
