@@ -57,8 +57,7 @@
         android:textSize="20dp"
         android:background="@color/white"
         android:layout_marginTop="15dp"
-        android:hint="Product name"
-        android:text="@string/product_name"/>
+        android:hint="Product name" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +80,6 @@
             android:background="@color/white"
             android:inputType="number"
             android:layout_alignParentStart="true"
-            android:text="@string/price"
             android:hint="Price"
             android:layout_alignParentLeft="true" />
 
@@ -99,7 +97,6 @@
             android:textSize="20dp"
             android:inputType="number"
             android:padding="10dp"
-            android:text="@string/quantity"
             android:hint="Quantity" />
     </LinearLayout>
 

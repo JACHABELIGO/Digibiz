@@ -10,6 +10,9 @@
     <string name="field_phone_number">phone_number</string>
     <string name="field_security_level">security_level</string>
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="hello_blank_fragments">Hello blank fragment</string>
+
     <string name="name">Name</string>
     <string name="product_name">Product Name</string>
     <string name="button">Button</string>
