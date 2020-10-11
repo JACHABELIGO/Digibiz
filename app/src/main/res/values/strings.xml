@@ -10,7 +10,9 @@
     <string name="field_phone_number">phone_number</string>
     <string name="field_security_level">security_level</string>
     <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragments">Hello blank fragment</string>
+
     <string name="name">Name</string>
     <string name="product_name">Product Name</string>
     <string name="button">Button</string>
@@ -18,9 +20,8 @@
     <string name="price">Price</string>
     <string name="top_icon" />
     <string name="Submit" />
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="out_of_stock">OUT OF STOCK</string>
     <string name="available">AVAILABLE</string>
     <string name="edit_button">edit_button</string>
+    <string name="you_don_t_have_any_active_transactions">You don\'t have any active transactions!</string>
 </resources>

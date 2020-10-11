@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorTextIcons"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/colorDivider"
+        app:tabSelectedTextColor="@color/colorPrimaryText"
         app:tabIndicatorColor="@color/colorDivider"
         app:tabTextColor="@color/colorPrimaryText">
 

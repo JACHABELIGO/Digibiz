@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ActiveFragment">
+    tools:context=".fragments.ActiveFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -23,12 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="You don't have any active transactions!"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="15dp" />
-
-
-
+            android:text="@string/you_don_t_have_any_active_transactions"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,9 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="40dp"
-        android:backgroundTint="@color/colorAccent"
-       android:src="@drawable/baseline_add_white_48"
-       />
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_baseline_add_24"/>
 
 
 
