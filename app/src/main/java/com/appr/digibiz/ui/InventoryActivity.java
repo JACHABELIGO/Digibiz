@@ -3,13 +3,12 @@ package com.appr.digibiz.ui;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,20 +18,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.appr.digibiz.R;
 import com.appr.digibiz.fragments.AvailableFragment;
 import com.appr.digibiz.fragments.OutOfStockFragment;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener{
     TabLayout tab_layout;
     ViewPager viewPager;
-//    Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
@@ -46,20 +42,14 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         setContentView(R.layout.activity_inventory);
         ButterKnife.bind(this);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.inventory_nav);
-        //set the custom toolbar as the default
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.inventory_nav);
 
 //        //navigation drawer menu
         toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        //set custom title
-//        TextView mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
-//        mToolbarTitle.setText(getString(R.string.inventory));
 
         tab_layout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
@@ -88,6 +78,16 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //this enables user to go back to the activity from the nav drawer
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
