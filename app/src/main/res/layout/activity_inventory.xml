@@ -12,7 +12,7 @@
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/inventory_nav"
         android:layout_width="wrap_content"
-        app:headerLayout="@layout/nav_header"
+        app:headerLayout="@layout/nav_header_inventory"
         app:itemIconTint="@color/colorPrimaryDark"
         app:itemTextColor="@color/colorPrimaryDark"
         app:menu="@menu/nav_menu"
