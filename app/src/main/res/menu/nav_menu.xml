@@ -10,13 +10,32 @@
             android:title="Inventory manager"/>
     </group>
 
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_account_settings"
-            android:title="Account settings"/>
-        <item android:id="@+id/nav_faq"
-            android:title="FAQ"/>
-        <item android:id="@+id/nav_about"
-            android:title="About"/>
-    </group>
+
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/nav_account_settings"
+                    android:title="Account settings"/>
+                <item android:id="@+id/nav_staff"
+                    android:title="Staff"/>
+                <item android:id="@+id/nav_logout"
+                    android:title="Logout"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="App">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/nav_faq"
+                    android:title="FAQ"/>
+                <item android:id="@+id/nav_about"
+                    android:title="About"/>
+                <item android:id="@+id/nav_feedback"
+                    android:title="Feedback"/>
+            </group>
+        </menu>
+    </item>
+
 
 </menu>

@@ -26,7 +26,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener{
+public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     TabLayout tab_layout;
     ViewPager viewPager;
     DrawerLayout drawerLayout;
@@ -44,6 +44,8 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.inventory_nav);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.bringToFront();
 
 //        //navigation drawer menu
         toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -73,6 +75,12 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //TODO: place intents to the activities here
+        return true;
     }
 
     @Override
