@@ -42,7 +42,7 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         setContentView(R.layout.activity_inventory);
         ButterKnife.bind(this);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout_inventory);
         navigationView = findViewById(R.id.inventory_nav);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.bringToFront();
