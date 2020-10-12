@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phillips 40v Bulbs"
-                android:textColor="@color/colorPrimaryLight"
+                android:textColor="@color/colorSuccess"
                 android:textSize="16sp" />
         </LinearLayout>
         <LinearLayout
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="130 pcs @ Ksh. 100"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/colorSecondaryDark"
                     android:textSize="16sp" />
             </LinearLayout>
             <ImageView
