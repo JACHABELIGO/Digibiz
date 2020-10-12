@@ -30,7 +30,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private ProgressDialog mProgressDialog;
-    
+
     @BindView(R.id.signup_business_name)
     TextInputLayout mBusinessName;
     @BindView(R.id.signup_email)
@@ -45,14 +45,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     Button mSignupButton;
     @BindView(R.id.to_Login)
     TextView mToLogin;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
-        
+
         auth = FirebaseAuth.getInstance();
         createAuthStateListenter();
         createAuthProgressDialog();
