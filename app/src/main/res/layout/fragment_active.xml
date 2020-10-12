@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ActiveFragment">
+    tools:context=".fragments.ActiveFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -23,13 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/adamina"
             android:textColor="@color/colorPrimaryDark"
-            android:text="You don't have any active transactions!"
-            android:textSize="15dp" />
-
-
-
+            android:text="@string/you_don_t_have_any_active_transactions"
+            android:textSize="15sp" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activeRecyclerView"
@@ -45,8 +41,7 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="40dp"
         android:backgroundTint="@color/colorPrimary"
-       android:src="@drawable/ic_baseline_add_24"
-       />
+        android:src="@drawable/ic_baseline_add_24"/>
 
 
 

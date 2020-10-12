@@ -1,5 +1,7 @@
 package com.appr.digibiz.ui;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,26 +11,22 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
 import com.appr.digibiz.R;
+import com.appr.digibiz.fragments.ActiveFragment;
+import com.appr.digibiz.fragments.CustomerFragment;
+import com.appr.digibiz.fragments.ResolvedFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class tabs extends AppCompatActivity {
-
-
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
 
     private ActiveFragment activeFragment;
-    private  ResolvedFragment resolvedFragment;
+    private ResolvedFragment resolvedFragment;
     private CustomerFragment customerFragment;
 
     @Override

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ResolvedFragment">
+    tools:context=".fragments.ResolvedFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -22,7 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/adamina"
             android:textColor="@color/colorPrimaryDark"
             android:text="You don't have any resolved transactions!"
             android:textSize="15dp" />
@@ -42,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="40dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:src="@drawable/ic_baseline_add_24" />
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/baseline_add_white_48" />
 
 
 </FrameLayout>

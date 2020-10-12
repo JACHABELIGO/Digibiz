@@ -1,4 +1,4 @@
-package com.appr.digibiz.ui;
+package com.appr.digibiz.fragments;
 
 import android.os.Bundle;
 
