@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimaryDarks"
+            android:textColor="@color/colorPrimaryDark"
             android:text="You don't have any resolved transactions!"
             android:textSize="15dp" />
 
