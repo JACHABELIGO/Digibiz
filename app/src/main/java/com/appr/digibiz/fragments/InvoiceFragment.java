@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.appr.digibiz.R;
@@ -21,6 +24,14 @@ import com.appr.digibiz.R;
 public class InvoiceFragment extends DialogFragment {
 
     ImageButton close;
+    EditText name;
+    EditText date;
+    EditText price;
+    EditText transactionDetails;
+    EditText quantity;
+    EditText phoneNumber;
+    CheckBox reminder;
+    Button submit;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,6 +79,15 @@ public class InvoiceFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_invoice, container, false);
 
         close = (ImageButton) view.findViewById(R.id.close);
+        name = (EditText) view.findViewById(R.id.name);
+        quantity = (EditText) view.findViewById(R.id.quantity);
+        price = (EditText) view.findViewById(R.id.price);
+        transactionDetails= (EditText) view.findViewById(R.id.transactionDetails);
+        phoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
+        date = (EditText) view.findViewById(R.id.date) ;
+        reminder =(CheckBox) view.findViewById(R.id.reminder);
+        submit = (Button) view.findViewById(R.id.submit);
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

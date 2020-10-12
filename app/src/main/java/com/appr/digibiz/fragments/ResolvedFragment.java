@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.appr.digibiz.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +17,8 @@ import com.appr.digibiz.R;
  * create an instance of this fragment.
  */
 public class ResolvedFragment extends Fragment {
+    FloatingActionButton addResolved;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +63,16 @@ public class ResolvedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.fragment_resolved, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resolved, container, false);
+        addResolved = (FloatingActionButton) view.findViewById(R.id.fab);
+        addResolved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        return view;
     }
 }
