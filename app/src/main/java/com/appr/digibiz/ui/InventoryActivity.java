@@ -47,8 +47,8 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     
-    @BindView(R.id.tab_layout) TabLayout tab_layout;
-    @BindView(R.id.view_pager) ViewPager viewPager;
+   // @BindView(R.id.tab_layout) TabLayout tab_layout;
+ //   @BindView(R.id.view_pager) ViewPager viewPager;
 
     private AvailableFragment availableFragment;
     private OutOfStockFragment outOfStockFragment;
@@ -154,8 +154,5 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         }
     }
 
-    @Override
-    public void onClick(View v){
 
-    }
 }

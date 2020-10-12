@@ -55,14 +55,14 @@
 
             <EditText
                 android:id="@+id/name"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="20dp"
-                android:padding="10dp"
-                android:fontFamily="@font/adamina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="20dp"
                 android:background="@drawable/border"
-                android:hint="Name"/>
+                android:fontFamily="@font/adamina"
+                android:hint="Name"
+                android:padding="10dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
