@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -50,7 +51,10 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view == mFab) {
-//            startActivity(new Intent(OutOfStockFragment.this,InventoryDialogFragment.));
+            InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.drawer_layout_inventory, inventoryDialogFragment);
+            transaction.commit();
         }
     }
 }

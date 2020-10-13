@@ -88,6 +88,7 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
 //        mFindSubmitButton.setOnClickListener(this);
 
         AvailableFragment availableFragment = new AvailableFragment();
+        OutOfStockFragment outOfStockFragment = new OutOfStockFragment();
         FragmentManager fm = getSupportFragmentManager();
 //        InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
 //        inventoryDialogFragment.show(fm, "Sample fragment");
