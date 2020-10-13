@@ -16,7 +16,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         this.numOfTabs = numOfTabs;
     }
 
-    @NonNull
     @Override
     public Fragment getItem(int position) {
         switch (position) {

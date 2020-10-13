@@ -13,7 +13,7 @@
             android:requiresFadingEdge="none"
             android:outlineAmbientShadowColor="@color/errorLightRed"
             android:layout_height="match_parent"
-            android:id="@+id/availableListRecyclerView"/>
+            android:id="@+id/outOfStockListRecyclerView"/>
 
         <ProgressBar
             android:visibility="gone"
