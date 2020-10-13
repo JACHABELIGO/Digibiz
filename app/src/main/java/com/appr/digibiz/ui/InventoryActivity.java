@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.R;
@@ -35,6 +36,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -84,9 +87,12 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
 
 //        mFindSubmitButton.setOnClickListener(this);
 
-//        FragmentManager fm = getSupportFragmentManager();
+        AvailableFragment availableFragment = new AvailableFragment();
+        FragmentManager fm = getSupportFragmentManager();
 //        InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
 //        inventoryDialogFragment.show(fm, "Sample fragment");
+
+        fm.beginTransaction().add(R.id.drawer_layout_inventory, availableFragment).commit();
 
 
 
