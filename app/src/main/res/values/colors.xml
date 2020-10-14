@@ -12,7 +12,7 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
     <color name="colorSuccess">#228B22</color>
-    <color name="colorSecondaryLight">#ECECF8</color>
+    <color name="colorSecondaryLight">#EFEFEF</color>
     <color name="colorSecondary">#BAC4E0</color>
     <color name="colorSecondaryDark">#3F3D56</color>
     <color name="errorLightRed">#9d0208</color>
