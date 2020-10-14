@@ -1,17 +1,13 @@
 package com.appr.digibiz.ui;
 
 
-import android.content.Intent;
 import android.os.Build;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -20,28 +16,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.R;
-import com.appr.digibiz.adapter.ViewPagerAdapter;
+import com.appr.digibiz.adapter.InventoryPagerAdapter;
 import com.appr.digibiz.fragments.AvailableFragment;
-import com.appr.digibiz.fragments.InventoryDialogFragment;
 import com.appr.digibiz.fragments.OutOfStockFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import butterknife.ButterKnife;
 
@@ -51,7 +34,7 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
-    ViewPagerAdapter viewPagerAdapter;
+    InventoryPagerAdapter viewPagerAdapter;
     TabItem tab_available;
     TabItem tab_outOfStock;
 
@@ -103,11 +86,11 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
 //        tab_layout.setupWithViewPager(viewPager);
 
 
-//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
+//        viewPagerAdapter = new InventoryPagerAdapter(getSupportFragmentManager(),0);
 //        viewPagerAdapter.addFragment(availableFragment, "AVAILABLE");
 //        viewPagerAdapter.addFragment(outOfStockFragment, "OUT OF STOCK");
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
+        viewPagerAdapter = new InventoryPagerAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
         viewPager.setAdapter(viewPagerAdapter);
 
         tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -176,10 +159,10 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     }
 
 
-//    private class ViewPagerAdapter extends FragmentPagerAdapter {
+//    private class InventoryPagerAdapter extends FragmentPagerAdapter {
 //        private List<Fragment> fragmentList = new ArrayList<>();
 //        private List<String> fragmentTitle = new ArrayList<>();
-//        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+//        public InventoryPagerAdapter(@NonNull FragmentManager fm, int behavior) {
 //            super(fm, behavior);
 //        }
 //

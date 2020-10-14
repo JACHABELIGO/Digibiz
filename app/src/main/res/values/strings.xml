@@ -21,6 +21,9 @@
     <string name="top_icon" />
     <string name="Submit" />
 
+    <!--    TABS-->
+    <string name="inventory_tab_1">AVAILABLE</string>
+    <string name="inventory_tab_2">OUT OF STOCK</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
