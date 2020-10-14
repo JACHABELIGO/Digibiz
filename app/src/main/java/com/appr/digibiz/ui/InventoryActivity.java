@@ -1,49 +1,22 @@
 package com.appr.digibiz.ui;
 
-
-import android.content.Intent;
-import android.os.Build;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.R;
-import com.appr.digibiz.adapter.ViewPagerAdapter;
-import com.appr.digibiz.fragments.AvailableFragment;
-import com.appr.digibiz.fragments.InventoryDialogFragment;
-import com.appr.digibiz.fragments.OutOfStockFragment;
+import com.appr.digibiz.adapter.InventoryPagerAdapter;
+
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import butterknife.ButterKnife;
 
 public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TabLayout tab_layout;
@@ -51,98 +24,23 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
-    ViewPagerAdapter viewPagerAdapter;
-    TabItem tab_available;
-    TabItem tab_outOfStock;
-
-//    @BindView(R.id.tab_layout) TabLayout tab_layout;
-//    @BindView(R.id.view_pager) ViewPager viewPager;
-
-//    private AvailableFragment availableFragment;
-//    private OutOfStockFragment outOfStockFragment;
-
+    InventoryPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        ButterKnife.bind(this);
 
+        //view hooks
         drawerLayout = findViewById(R.id.drawer_layout_inventory);
         navigationView = findViewById(R.id.inventory_nav);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.bringToFront();
-        tab_available =findViewById(R.id.tab_available);
-        tab_outOfStock =findViewById(R.id.tab_outOfStock);
         tab_layout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.viewPager);
 
-//        //navigation drawer menu
-        toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        ButterKnife.bind(this);
-
-//        mFindSubmitButton.setOnClickListener(this);
-
-        AvailableFragment availableFragment = new AvailableFragment();
-        OutOfStockFragment outOfStockFragment = new OutOfStockFragment();
-        FragmentManager fm = getSupportFragmentManager();
-//        InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
-//        inventoryDialogFragment.show(fm, "Sample fragment");
-
-        fm.beginTransaction().add(R.id.drawer_layout_inventory, availableFragment).commit();
-
-
-
-//        availableFragment = new AvailableFragment();
-//        outOfStockFragment = new OutOfStockFragment();
-
-//        tab_layout.setupWithViewPager(viewPager);
-
-
-//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),0);
-//        viewPagerAdapter.addFragment(availableFragment, "AVAILABLE");
-//        viewPagerAdapter.addFragment(outOfStockFragment, "OUT OF STOCK");
-
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tab_layout.getTabCount());
-        viewPager.setAdapter(viewPagerAdapter);
-
-        tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 1) {
-                    tab_layout.setBackgroundColor(ContextCompat.getColor(InventoryActivity.this, R.color.colorTextIcons));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(InventoryActivity.this, R.color.colorDivider));
-                    }
-                } else if (tab.getPosition() == 2) {
-                    tab_layout.setBackgroundColor(ContextCompat.getColor(InventoryActivity.this, R.color.colorTextIcons));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(InventoryActivity.this, R.color.colorDivider));
-                    }
-                } else {
-                    tab_layout.setBackgroundColor(ContextCompat.getColor(InventoryActivity.this, R.color.colorTextIcons));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(InventoryActivity.this, R.color.colorDivider));
-                    }
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
+        setUpNavigationDrawer();
+        setupViewPagerAdapter();
 
     }
 
@@ -175,35 +73,15 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         }
     }
 
-
-//    private class ViewPagerAdapter extends FragmentPagerAdapter {
-//        private List<Fragment> fragmentList = new ArrayList<>();
-//        private List<String> fragmentTitle = new ArrayList<>();
-//        public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
-//            super(fm, behavior);
-//        }
-//
-//        public void addFragment(Fragment fragment,String title){
-//            fragmentList.add(fragment);
-//            fragmentTitle.add(title);
-//        }
-//
-//        @Nullable
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            return fragmentTitle.get(position);
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Fragment getItem(int position) {
-//            return fragmentList.get(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return fragmentList.size();
-//        }
-
-
+    private void setUpNavigationDrawer() {
+        toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    private void setupViewPagerAdapter() {
+        viewPagerAdapter = new InventoryPagerAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        tab_layout.setupWithViewPager(viewPager);
+    }
 }

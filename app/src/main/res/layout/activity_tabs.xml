@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:id="@+id/drawer_layout_invoice"
     android:layout_height="match_parent"
-    tools:openDrawer="start"
     tools:context=".ui.tabs">
 
     <com.google.android.material.navigation.NavigationView
@@ -24,6 +23,8 @@
         android:layout_height="match_parent">
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
+            android:elevation="5dp"
+            app:tabBackground="@color/colorSecondaryLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </com.google.android.material.tabs.TabLayout>

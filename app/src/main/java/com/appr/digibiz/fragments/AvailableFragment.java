@@ -52,10 +52,9 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
         public void onClick(View view) {
 
                 if (view == mFab) {
-                    InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.drawer_layout_inventory, inventoryDialogFragment);
-                    transaction.commit();
+                        FragmentManager fm = getChildFragmentManager();
+                        InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
+                        inventoryDialogFragment.show(fm, "Available inventory");
                 }
         }
 
