@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Invoice account"/>
+                android:text="Invoice Tracker"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Inventory tracker"/>
+                android:text="Inventory Manager"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
