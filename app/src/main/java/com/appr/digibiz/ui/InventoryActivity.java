@@ -1,6 +1,5 @@
 package com.appr.digibiz.ui;
 
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.appr.digibiz.R;
 import com.appr.digibiz.adapter.InventoryPagerAdapter;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import butterknife.ButterKnife;
@@ -29,8 +27,6 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     InventoryPagerAdapter viewPagerAdapter;
-    TabItem tab_available;
-    TabItem tab_outOfStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +34,16 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         setContentView(R.layout.activity_inventory);
         ButterKnife.bind(this);
 
+        //view hooks
         drawerLayout = findViewById(R.id.drawer_layout_inventory);
         navigationView = findViewById(R.id.inventory_nav);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.bringToFront();
-        tab_available =findViewById(R.id.tab_available);
-        tab_outOfStock =findViewById(R.id.tab_outOfStock);
         tab_layout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.viewPager);
 
-//        //navigation drawer menu
-        toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setUpNavigationDrawer();
+        setupViewPagerAdapter();
 
     }
 
@@ -82,5 +74,17 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void setUpNavigationDrawer() {
+        toggle = new ActionBarDrawerToggle(InventoryActivity.this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    private void setupViewPagerAdapter() {
+        viewPagerAdapter = new InventoryPagerAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        tab_layout.setupWithViewPager(viewPager);
     }
 }
