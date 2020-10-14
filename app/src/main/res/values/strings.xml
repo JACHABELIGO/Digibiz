@@ -33,4 +33,5 @@
 <!--    Navigation drawer descriptions-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="your_inventory_is_currently_empty">Your Inventory is currently empty</string>
 </resources>

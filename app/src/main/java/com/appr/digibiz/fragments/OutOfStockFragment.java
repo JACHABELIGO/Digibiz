@@ -1,8 +1,10 @@
 package com.appr.digibiz.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -17,53 +19,42 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OutOfStockFragment extends Fragment {
+public class OutOfStockFragment extends Fragment implements View.OnClickListener{
+    @BindView(R.id.outOfStockListRecyclerView)
+    RecyclerView outOfStockListRecyclerView;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public OutOfStockFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment active.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static OutOfStockFragment newInstance(String param1, String param2) {
-        OutOfStockFragment fragment = new OutOfStockFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_out_of_stock, container, false);
+        View view = inflater.inflate(R.layout.fragment_out_of_stock, container, false);
+        ButterKnife.bind(this, view);
 
+        //click listeners
+        mFab.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mFab) {
+            InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.drawer_layout_inventory, inventoryDialogFragment);
+            transaction.commit();
+        }
     }
 }

@@ -46,7 +46,8 @@ public class InventoryDialogFragment extends DialogFragment {
 
             }
         });
-        getDialog().setTitle("Inventory Tracker");
+        // we'll check this later if it is not submitting
+//        getDialog().setTitle("Inventory Tracker");
         return rootView;
     }
 
