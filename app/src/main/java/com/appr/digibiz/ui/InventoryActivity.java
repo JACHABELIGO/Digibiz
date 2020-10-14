@@ -18,8 +18,6 @@ import com.appr.digibiz.adapter.InventoryPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import butterknife.ButterKnife;
-
 public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TabLayout tab_layout;
     ViewPager viewPager;
@@ -32,7 +30,6 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
-        ButterKnife.bind(this);
 
         //view hooks
         drawerLayout = findViewById(R.id.drawer_layout_inventory);
