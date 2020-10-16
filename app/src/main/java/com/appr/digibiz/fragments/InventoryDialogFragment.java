@@ -51,26 +51,6 @@ public class InventoryDialogFragment extends DialogFragment {
         return rootView;
     }
 
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setTitle("Dialog via Builder");
-//        builder.setMessage("Would you like to add another Inventory?");
-//
-//        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                dismiss();
-//            }
-//        });
-//
-//        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                dismiss();
-//            }
-//        });
-//        return builder.create();
-//    }
+
 
 }
