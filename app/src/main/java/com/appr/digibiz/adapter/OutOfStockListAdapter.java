@@ -10,60 +10,60 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
-import com.appr.digibiz.models.AvailableModel;
+import com.appr.digibiz.models.OutOfStockModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AvailableListAdapter extends RecyclerView.Adapter<AvailableListAdapter.AvailableViewHolder> {
-    private List<AvailableModel> availableList;
+public class OutOfStockListAdapter extends RecyclerView.Adapter<OutOfStockListAdapter.OutOfStockViewHolder> {
+    private List<OutOfStockModel> outOfStockList;
     private Context context;
 
-    public AvailableListAdapter(List<AvailableModel> availableList, Context context) {
-        this.availableList = availableList;
+    public OutOfStockListAdapter(List<OutOfStockModel> outOfStockList, Context context) {
+        this.outOfStockList = outOfStockList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AvailableListAdapter.AvailableViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
-        AvailableListAdapter.AvailableViewHolder viewHolder = new AvailableListAdapter.AvailableViewHolder(view);
+    public OutOfStockListAdapter.OutOfStockViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.outofstock_list_item, parent, false);
+        OutOfStockListAdapter.OutOfStockViewHolder viewHolder = new OutOfStockListAdapter.OutOfStockViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AvailableListAdapter.AvailableViewHolder holder, int position) {
-        holder.bindAvailableList(availableList.get(position));
+    public void onBindViewHolder(@NonNull OutOfStockListAdapter.OutOfStockViewHolder holder, int position) {
+        holder.bindOutOfStockList(outOfStockList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return availableList.size();
+        return outOfStockList.size();
     }
 
-    public class AvailableViewHolder extends RecyclerView.ViewHolder {
+    public class OutOfStockViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.product_name) TextView mProductName;
         @BindView(R.id.quantity) TextView mQuantity;
         @BindView(R.id.price_per_item) TextView mPricePerItem;
 
-        private String TAG = AvailableViewHolder.class.getSimpleName();
+        private String TAG = OutOfStockListAdapter.OutOfStockViewHolder.class.getSimpleName();
         private Context context;
-        private AvailableModel available;
+        private OutOfStockModel outOfStock;
 
-        public AvailableViewHolder(@NonNull View itemView) {
+        public OutOfStockViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
 //            itemView.setOnClickListener(this);
         }
 
-        public void bindAvailableList(AvailableModel availableModel) {
-            mProductName.setText(available.getProductName());
-            mQuantity.setText(available.getQuantity());
-            mPricePerItem.setText(available.getPricePerItem());
+        public void bindOutOfStockList(OutOfStockModel outOfStockModel) {
+            mProductName.setText(outOfStock.getProductName());
+            mQuantity.setText(outOfStock.getQuantity());
+            mPricePerItem.setText(outOfStock.getPricePerItem());
         }
 
 //        @Override
