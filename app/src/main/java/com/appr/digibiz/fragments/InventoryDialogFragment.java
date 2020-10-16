@@ -12,7 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.appr.digibiz.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,11 +28,13 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
     @BindView(R.id.product_name)
     TextInputLayout mProductName;
     @BindView(R.id.price)
-    Button mPrice;
+    TextInputLayout mPrice;
     @BindView(R.id.quantity)
-    Button mQuantity;
+    TextInputLayout mQuantity;
     @BindView(R.id.cancel_action)
-    Button mCancel;
+    ImageView mCancel;
+
+    private View rootView;
 
     private static final String TAG = "InventoryDialogFragment";
 
@@ -43,12 +49,12 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View rootView = inflater.inflate(R.layout.fragment_inventory_dialog, container, false);
+        rootView = inflater.inflate(R.layout.fragment_inventory_dialog, container, false);
         ButterKnife.bind(this,rootView);
 
         final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
         int selectedId = checkedViewGroup.getId();
-        final ViewGroup checkedviewGroup = (ViewGroup) rootView.findViewById(selectedId);
+        final ViewGroup checkeViewGroup = (ViewGroup) rootView.findViewById(selectedId);
 
         return rootView;
     }
@@ -58,5 +64,48 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         if(view == mCancel) {
             dismiss();
         }
+        if(view == mSubmintButton) {
+            createInventory();
+        }
+    }
+
+    private void createInventory() {
+        String productName = mProductName.getEditText().getText().toString().trim();
+        String price = mPrice.getEditText().getText().toString().trim();
+        String quantity = mQuantity.getEditText().getText().toString().trim();
+
+        boolean validProductName = isValidInput(mProductName, productName);
+        boolean validPrice = isValidInput(mPrice, price);
+        boolean validQuantity = isValidInput(mQuantity, quantity);
+        if(!validProductName || !validPrice || !validQuantity) return;
+        //we save the data after all requirements are met
+        saveInventory(productName, price, quantity);
+    }
+
+    private void saveInventory(String productName, String price, String quantity) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child(getString(R.string.db_node_inventory))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(getString(R.string.db_node_available));
+        String inventoryId = reference.push().getKey();
+        //TODO: fix in the inventory model that we will use to save the data
+        //InventoryModel newInventory = new InventoryModel(productName, price, quantity);
+//        reference.child(inventoryId)
+//                .setValue(newInventory);
+        //then we dismiss a dialog and show a snack bar for confirmation
+        Snackbar.make(rootView, "Inventory added", Snackbar.LENGTH_LONG)
+                .setBackgroundTint(getResources().getColor(R.color.colorSuccess))
+                .setActionTextColor(getResources().getColor(R.color.colorSecondaryLight))
+                .show();
+    }
+
+
+    //form validations
+    private boolean isValidInput(TextInputLayout textInputLayout, String name) {
+        if (name.equals("")) {
+            textInputLayout.setError("Field can't be empty");
+            return false;
+        }
+        return true;
     }
 }
