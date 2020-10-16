@@ -1,9 +1,5 @@
 package com.appr.digibiz.fragments;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,46 +7,56 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.appr.digibiz.R;
+import com.google.android.material.textfield.TextInputLayout;
 
-public class InventoryDialogFragment extends DialogFragment {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class InventoryDialogFragment extends DialogFragment implements View.OnClickListener {
+
+    @BindView(R.id.buttonA)
+    Button mSubmintButton;
+    @BindView(R.id.product_name)
+    TextInputLayout mProductName;
+    @BindView(R.id.price)
+    Button mPrice;
+    @BindView(R.id.quantity)
+    Button mQuantity;
+    @BindView(R.id.cancel_action)
+    Button mCancel;
+
+    private static final String TAG = "InventoryDialogFragment";
+
+    public InventoryDialogFragment() {
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_inventory_dialog, container, false);
-
-        Button submitButton = (Button) rootView.findViewById(R.id.buttonA);
-        ImageView cancelIcon = (ImageView) rootView.findViewById(R.id.cancel_action);
-
-        cancelIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-
-        });
+        ButterKnife.bind(this,rootView);
 
         final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
         int selectedId = checkedViewGroup.getId();
         final ViewGroup checkedviewGroup = (ViewGroup) rootView.findViewById(selectedId);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View V) {
-                Log.d("testing", checkedviewGroup.toString());
-                dismiss();
-
-            }
-        });
-        // we'll check this later if it is not submitting
-//        getDialog().setTitle("Inventory Tracker");
         return rootView;
     }
 
-
-
+    @Override
+    public void onClick(View view) {
+        if(view == mCancel) {
+            dismiss();
+        }
+    }
 }
