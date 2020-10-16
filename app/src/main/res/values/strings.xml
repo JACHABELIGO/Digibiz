@@ -11,8 +11,6 @@
     <string name="field_security_level">security_level</string>
     <!-- TODO: Remove or change this placeholder text -->
 
-    <string name="hello_blank_fragments">Hello blank fragment</string>
-
     <string name="name">Name</string>
     <string name="product_name">Product Name</string>
     <string name="button">Button</string>
@@ -20,7 +18,6 @@
     <string name="price">Price</string>
     <string name="top_icon" />
     <string name="Submit" />
-
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -34,4 +31,7 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="your_inventory_is_currently_empty">Your Inventory is currently empty</string>
+    <string name="delete_button">delete_button</string>
+    <string name="_130_pcs_ksh_100">130 pcs @ Ksh. 100</string>
+    <string name="productName">Phillips 40v Bulbs</string>
 </resources>
