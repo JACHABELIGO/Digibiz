@@ -3,13 +3,32 @@
 
 <!--    firebase node names-->
     <string name="db_node_users">users</string>
+    <string name="db_node_invoice">invoice</string>
+    <string name="db_node_inventory">inventory</string>
+    <string name="db_node_active">active</string>
+    <string name="db_node_resolved">resolved</string>
+    <string name="db_node_customers">customers</string>
+    <string name="db_node_available">available</string>
+    <string name="db_node_out_of_stock">out_of_stock</string>
 
 <!--    firebase field names-->
     <string name="field_business_name">business_name</string>
     <string name="field_email">email</string>
     <string name="field_phone_number">phone_number</string>
     <string name="field_security_level">security_level</string>
-    <!-- TODO: Remove or change this placeholder text -->
+<!--    invoice -->
+    <string name="field_name_of_creditor">name_of_creditor</string>
+    <string name="field_total_amount">total_amount</string>
+    <string name="field_quantity">quantity</string>
+    <string name="field_price_per_item">price_per_item</string>
+    <string name="field_due_date">due_date</string>
+    <string name="field_mobile_number">mobile_number</string>
+    <string name="field_transaction_details">transaction_details</string>
+    <string name="field_push_id">push_id</string>
+    <string name="field_customer_name">customer_name</string>
+<!--    inventory-->
+    <string name="field_product_name">product_name</string>
+
 
     <string name="hello_blank_fragments">Hello blank fragment</string>
 
