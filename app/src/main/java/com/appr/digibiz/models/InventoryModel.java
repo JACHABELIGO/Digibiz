@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import org.parceler.Parcel;
 
 @Parcel
-public class AvailableModel {
+public class InventoryModel {
     @SerializedName("product_name")
     @Expose
     public String product_name;
@@ -22,7 +22,7 @@ public class AvailableModel {
      *
      */
 
-    public AvailableModel() {
+    public InventoryModel() {
     }
 
     /**
@@ -31,7 +31,7 @@ public class AvailableModel {
      * @param price_per_item
      */
 
-    public AvailableModel(String product_name, String quantity, String price_per_item) {
+    public InventoryModel(String product_name, String quantity, String price_per_item) {
         super();
         this.product_name = product_name;
         this.quantity = quantity;

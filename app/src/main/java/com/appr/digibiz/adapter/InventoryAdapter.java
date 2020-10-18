@@ -10,60 +10,65 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
-import com.appr.digibiz.models.AvailableModel;
+import com.appr.digibiz.models.InventoryModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AvailableListAdapter extends RecyclerView.Adapter<AvailableListAdapter.AvailableViewHolder> {
-    private List<AvailableModel> availableList;
+public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder > {
+    //TODO change here
+    private List<InventoryModel> availableList;
     private Context context;
 
-    public AvailableListAdapter(List<AvailableModel> availableList, Context context) {
+    public InventoryAdapter(List<InventoryModel> availableList, Context context) {
+        //TODO change here
         this.availableList = availableList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AvailableListAdapter.AvailableViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InventoryAdapter.InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //TODO change here
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
-        AvailableListAdapter.AvailableViewHolder viewHolder = new AvailableListAdapter.AvailableViewHolder(view);
+        InventoryAdapter.InventoryViewHolder viewHolder = new InventoryAdapter.InventoryViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AvailableListAdapter.AvailableViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull InventoryAdapter.InventoryViewHolder holder, int position) {
+        //TODO change here
         holder.bindAvailableList(availableList.get(position));
     }
 
     @Override
     public int getItemCount() {
+        //TODO change here
         return availableList.size();
     }
 
-    public class AvailableViewHolder extends RecyclerView.ViewHolder {
+    public class InventoryViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.product_name) TextView mProductName;
         @BindView(R.id.quantity) TextView mQuantity;
         @BindView(R.id.price_per_item) TextView mPricePerItem;
 
-        private String TAG = AvailableViewHolder.class.getSimpleName();
+        private String TAG = InventoryViewHolder.class.getSimpleName();
         private Context context;
-        private AvailableModel available;
+        private InventoryModel inventory;
 
-        public AvailableViewHolder(@NonNull View itemView) {
+        public InventoryViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
 //            itemView.setOnClickListener(this);
         }
 
-        public void bindAvailableList(AvailableModel availableModel) {
-            mProductName.setText(available.getProductName());
-            mQuantity.setText(available.getQuantity());
-            mPricePerItem.setText(available.getPricePerItem());
+        public void bindAvailableList(InventoryModel inventoryModel) {
+            mProductName.setText(inventory.getProductName());
+            mQuantity.setText(inventory.getQuantity());
+            mPricePerItem.setText(inventory.getPricePerItem());
         }
 
 //        @Override
