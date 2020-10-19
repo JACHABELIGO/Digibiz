@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.tabs" android:theme="@style/AppTheme" />
+        <activity android:name=".ui.tabs"
+            android:label="Invoice Tracker"
+            android:theme="@style/AppTheme" />
         <activity android:name=".ui.InventoryActivity"
+            android:label="Inventory Manager"
             android:theme="@style/AppTheme">
         </activity>
 
@@ -29,7 +32,8 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:label="Home">
         </activity>
 
         <meta-data
