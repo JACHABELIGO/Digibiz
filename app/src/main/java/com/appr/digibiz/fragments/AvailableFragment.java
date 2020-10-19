@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AvailableFragment extends Fragment implements View.OnClickListener{
-        @BindView(R.id.fab)
+        @BindView(R.id.fabAvailable)
         FloatingActionButton mFab;
         @BindView(R.id.availableProgressBar)
         ProgressBar mProgressBar;

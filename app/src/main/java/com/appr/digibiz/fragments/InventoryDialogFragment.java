@@ -6,12 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.InventoryModel;
@@ -58,9 +55,9 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         //click listeners
         mSubmintButton.setOnClickListener(this);
 
-        final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
-        int selectedId = checkedViewGroup.getId();
-        final ViewGroup checkeViewGroup = (ViewGroup) rootView.findViewById(selectedId);
+//        final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
+//        int selectedId = checkedViewGroup.getId();
+//        final ViewGroup checkeViewGroup = (ViewGroup) rootView.findViewById(selectedId);
 
         return rootView;
     }
@@ -95,7 +92,6 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(getString(R.string.db_node_available));
         String inventoryId = reference.push().getKey();
-        //TODO: fix in the inventory model that we will use to save the data
         InventoryModel newInventory = new InventoryModel(productName, price, quantity);
         reference.child(inventoryId)
                 .setValue(newInventory);
