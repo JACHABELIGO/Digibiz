@@ -54,10 +54,7 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
 
         //click listeners
         mSubmintButton.setOnClickListener(this);
-
-//        final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
-//        int selectedId = checkedViewGroup.getId();
-//        final ViewGroup checkeViewGroup = (ViewGroup) rootView.findViewById(selectedId);
+        mCancel.setOnClickListener(this);
 
         return rootView;
     }
@@ -69,7 +66,6 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         }
         if(view == mSubmintButton) {
             createInventory();
-            dismiss();
         }
     }
 
@@ -84,15 +80,19 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         if(!validProductName || !validPrice || !validQuantity) return;
         //we save the data after all requirements are met
         saveInventory(productName, price, quantity);
+        dismiss();
     }
 
-    private void saveInventory(String productName, String price, String quantity) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child(getString(R.string.db_node_inventory))
+    private void saveInventory(String product_name, String price_per_item, String quantity) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        String inventoryId = reference.child(getString(R.string.db_node_inventory))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child(getString(R.string.db_node_available));
-        String inventoryId = reference.push().getKey();
-        InventoryModel newInventory = new InventoryModel(productName, price, quantity);
+                .child(getString(R.string.db_node_available))
+                .push().getKey();
+        InventoryModel newInventory = new InventoryModel();
+        newInventory.setProductName(product_name);
+        newInventory.setPricePerItem(price_per_item);
+        newInventory.setQuantity(quantity);
         reference.child(inventoryId)
                 .setValue(newInventory);
         //then we dismiss a dialog and show a snack bar for confirmation

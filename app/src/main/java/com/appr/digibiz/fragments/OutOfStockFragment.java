@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 public class OutOfStockFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.outOfStockListRecyclerView)
     RecyclerView outOfStockListRecyclerView;
-    @BindView(R.id.fab)
+    @BindView(R.id.fabOutOfStock)
     FloatingActionButton mFab;
 
 

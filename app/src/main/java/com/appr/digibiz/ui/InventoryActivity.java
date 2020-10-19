@@ -31,7 +31,6 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
-
         //view hooks
         drawerLayout = findViewById(R.id.drawer_layout_inventory);
         navigationView = findViewById(R.id.inventory_nav);

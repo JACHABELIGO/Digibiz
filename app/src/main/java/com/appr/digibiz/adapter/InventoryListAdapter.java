@@ -71,16 +71,5 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
             mPricePerItem.setText(inventory.getPricePerItem());
         }
 
-//        @Override
-//        public void onClick(View view) {
-//            if (view == mAvailableCard) {
-//                int itemPosition = getLayoutPosition();
-//                Intent intent = new Intent(context, SessionDetailsActivity.class);
-//                intent.putExtra("position", itemPosition);
-//                intent.putExtra("sessions", Parcels.wrap(availableList));
-//                Log.d(TAG, "card view clicked");
-//                context.startActivity(intent);
-//            }
-//        }
     }
 }
