@@ -15,7 +15,7 @@ import com.appr.digibiz.fragments.OutOfStockFragment;
 
 public class InventoryPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int[] TAB_TITLES = new int[]{R.string.inventory_tab_1, R.string.inventory_tab_2};
+    private static final int[] TAB_TITLES = new int[]{R.string.available, R.string.out_of_stock};
     private final Context mContext;
 
     public InventoryPagerAdapter(Context context, FragmentManager fragmentManager) {

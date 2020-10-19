@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
@@ -42,7 +42,6 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
 
         @Override
         public void onClick(View view) {
-
                 if (view == mFab) {
                         FragmentManager fm = getChildFragmentManager();
                         InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();

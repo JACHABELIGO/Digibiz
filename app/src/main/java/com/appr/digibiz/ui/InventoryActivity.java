@@ -8,20 +8,15 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.R;
-import com.appr.digibiz.adapter.ViewPagerAdapter;
-import com.appr.digibiz.fragments.AvailableFragment;
-import com.appr.digibiz.fragments.OutOfStockFragment;
+import com.appr.digibiz.adapter.InventoryPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import butterknife.ButterKnife;
 
 public class InventoryActivity extends AppCompatActivity  implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     TabLayout tab_layout;
