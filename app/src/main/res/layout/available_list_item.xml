@@ -22,10 +22,10 @@
             android:layout_marginBottom="40dp">
 
             <TextView
-                android:id="@+id/itemName"
+                android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phillips 40v Bulbs"
+                android:text="@string/productName"
                 android:textColor="@color/colorSuccess"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -41,12 +41,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/itemPriceQuantity"
+                    android:id="@+id/price_per_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="130 pcs @ Ksh. 100"
+                    android:text="@string/_130_pcs_ksh_100"
                     android:textColor="@color/colorSecondaryDark"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
             </LinearLayout>
             <ImageView
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:src="@drawable/ic_baseline_delete_24"
                 android:paddingEnd="4dp"
                 tools:ignore="RtlSymmetry"
-                android:contentDescription="delete_button" />
+                android:contentDescription="@string/delete_button" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
