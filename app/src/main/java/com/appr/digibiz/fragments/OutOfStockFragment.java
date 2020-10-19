@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 public class OutOfStockFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.outOfStockListRecyclerView)
     RecyclerView outOfStockListRecyclerView;
-    @BindView(R.id.fab)
+    @BindView(R.id.fabOutOfStock)
     FloatingActionButton mFab;
 
 
@@ -47,9 +47,9 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view == mFab) {
-            FragmentManager fm = getChildFragmentManager();
-            InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
-            inventoryDialogFragment.show(fm, "Out of stock inventory");
+//            FragmentManager fm = getChildFragmentManager();
+//            InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
+//            inventoryDialogFragment.show(fm, "Out of stock inventory");
         }
     }
 }

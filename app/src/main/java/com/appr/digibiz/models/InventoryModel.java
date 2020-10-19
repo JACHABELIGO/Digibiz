@@ -1,48 +1,27 @@
 package com.appr.digibiz.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import org.parceler.Parcel;
 
 @Parcel
 public class InventoryModel {
-    @SerializedName("product_name")
-    @Expose
     public String product_name;
-    @SerializedName("quantity")
-    @Expose
     public String quantity;
-    @SerializedName("price_per_item")
-    @Expose
     public String price_per_item;
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
 
     public InventoryModel() {
     }
 
-    /**
-     * @param product_name
-     * @param quantity
-     * @param price_per_item
-     */
-
     public InventoryModel(String product_name, String quantity, String price_per_item) {
-        super();
         this.product_name = product_name;
         this.quantity = quantity;
         this.price_per_item = price_per_item;
     }
 
-    public String getProductName() {
+    public String getProduct_name() {
         return product_name;
     }
 
-    public void setProductName(String product_name) {
+    public void setProduct_name(String product_name) {
         this.product_name = product_name;
     }
 
@@ -52,15 +31,22 @@ public class InventoryModel {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-
     }
 
-    public String getPricePerItem() {
+    public String getPrice_per_item() {
         return price_per_item;
     }
 
-    public void setPricePerItem(String price_per_item) {
+    public void setPrice_per_item(String price_per_item) {
         this.price_per_item = price_per_item;
+    }
 
+    @Override
+    public String toString() {
+        return "InventoryModel{" +
+                "product_name='" + product_name + '\'' +
+                ", quantity='" + quantity + '\'' +
+                ", price_per_item='" + price_per_item + '\'' +
+                '}';
     }
 }
