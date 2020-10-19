@@ -72,6 +72,7 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         }
         if(view == mSubmintButton) {
             createInventory();
+            dismiss();
         }
     }
 
