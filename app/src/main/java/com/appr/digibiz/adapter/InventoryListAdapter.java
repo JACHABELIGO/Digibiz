@@ -56,19 +56,17 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
         private String TAG = InventoryViewHolder.class.getSimpleName();
         private Context context;
-        private InventoryModel inventory;
 
         public InventoryViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
-//            itemView.setOnClickListener(this);
         }
 
         public void bindAvailableList(InventoryModel inventoryModel) {
-            mProductName.setText(inventory.getProductName());
-            mQuantity.setText(inventory.getQuantity());
-            mPricePerItem.setText(inventory.getPricePerItem());
+            mProductName.setText(inventoryModel.getProduct_name());
+            mQuantity.setText(inventoryModel.getQuantity());
+            mPricePerItem.setText(inventoryModel.getPrice_per_item());
         }
 
     }

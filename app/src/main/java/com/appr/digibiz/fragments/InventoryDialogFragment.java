@@ -90,10 +90,13 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
                 .child(getString(R.string.db_node_available))
                 .push().getKey();
         InventoryModel newInventory = new InventoryModel();
-        newInventory.setProductName(product_name);
-        newInventory.setPricePerItem(price_per_item);
+        newInventory.setProduct_name(product_name);
+        newInventory.setPrice_per_item(price_per_item);
         newInventory.setQuantity(quantity);
-        reference.child(inventoryId)
+        reference.child(getString(R.string.db_node_inventory))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(getString(R.string.db_node_available))
+                .child(inventoryId)
                 .setValue(newInventory);
         //then we dismiss a dialog and show a snack bar for confirmation
         Snackbar.make(rootView, "Inventory added", Snackbar.LENGTH_LONG)

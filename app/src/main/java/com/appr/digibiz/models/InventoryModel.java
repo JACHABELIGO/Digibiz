@@ -17,11 +17,11 @@ public class InventoryModel {
         this.price_per_item = price_per_item;
     }
 
-    public String getProductName() {
+    public String getProduct_name() {
         return product_name;
     }
 
-    public void setProductName(String product_name) {
+    public void setProduct_name(String product_name) {
         this.product_name = product_name;
     }
 
@@ -33,12 +33,20 @@ public class InventoryModel {
         this.quantity = quantity;
     }
 
-    public String getPricePerItem() {
+    public String getPrice_per_item() {
         return price_per_item;
     }
 
-    public void setPricePerItem(String price_per_item) {
+    public void setPrice_per_item(String price_per_item) {
         this.price_per_item = price_per_item;
+    }
 
+    @Override
+    public String toString() {
+        return "InventoryModel{" +
+                "product_name='" + product_name + '\'' +
+                ", quantity='" + quantity + '\'' +
+                ", price_per_item='" + price_per_item + '\'' +
+                '}';
     }
 }
