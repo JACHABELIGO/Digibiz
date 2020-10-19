@@ -1,17 +1,20 @@
 package com.appr.digibiz.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.models.InventoryModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -89,9 +92,9 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
                 .child(getString(R.string.db_node_available));
         String inventoryId = reference.push().getKey();
         //TODO: fix in the inventory model that we will use to save the data
-        //InventoryModel newInventory = new InventoryModel(productName, price, quantity);
-//        reference.child(inventoryId)
-//                .setValue(newInventory);
+        InventoryModel newInventory = new InventoryModel(productName, price, quantity);
+        reference.child(inventoryId)
+                .setValue(newInventory);
         //then we dismiss a dialog and show a snack bar for confirmation
         Snackbar.make(rootView, "Inventory added", Snackbar.LENGTH_LONG)
                 .setBackgroundTint(getResources().getColor(R.color.colorSuccess))

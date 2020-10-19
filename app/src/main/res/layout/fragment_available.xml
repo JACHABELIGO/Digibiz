@@ -10,23 +10,23 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/empty"
+                android:id="@+id/emptyAvailableList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="100dp"
-                android:src="@drawable/clipboard" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="100dp"
+                        android:src="@drawable/clipboard" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@string/your_inventory_is_currently_empty"
-                android:textSize="15sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/your_inventory_is_currently_empty"
+                        android:textSize="15sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="match_parent"
-                android:id="@+id/homeProgressBar"
+                android:id="@+id/availableProgressBar"
                 style="?android:attr/progressBarStyle"/>
 
             <TextView

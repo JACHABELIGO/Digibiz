@@ -17,12 +17,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder > {
+public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdapter.InventoryViewHolder > {
     //TODO change here
     private List<InventoryModel> availableList;
     private Context context;
 
-    public InventoryAdapter(List<InventoryModel> availableList, Context context) {
+    public InventoryListAdapter(List<InventoryModel> availableList, Context context) {
         //TODO change here
         this.availableList = availableList;
         this.context = context;
@@ -30,15 +30,15 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.Inve
 
     @NonNull
     @Override
-    public InventoryAdapter.InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InventoryListAdapter.InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //TODO change here
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
-        InventoryAdapter.InventoryViewHolder viewHolder = new InventoryAdapter.InventoryViewHolder(view);
+        InventoryListAdapter.InventoryViewHolder viewHolder = new InventoryListAdapter.InventoryViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InventoryAdapter.InventoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull InventoryListAdapter.InventoryViewHolder holder, int position) {
         //TODO change here
         holder.bindAvailableList(availableList.get(position));
     }
