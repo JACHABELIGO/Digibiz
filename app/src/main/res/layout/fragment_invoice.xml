@@ -71,6 +71,7 @@
                     android:id="@+id/quantity"
                     android:padding="10dp"
                     android:layout_width="150dp"
+                    android:inputType="number"
                     android:textColor="@color/colorSecondaryDark"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border"
@@ -81,6 +82,7 @@
                     android:padding="10dp"
                     android:textColor="@color/colorSecondaryDark"
                     android:layout_width="150dp"
+                    android:inputType="number"
                     android:layout_marginStart="20sp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border"
@@ -96,6 +98,7 @@
                 <EditText
                     android:id="@+id/date"
                     android:padding="10dp"
+                    android:inputType="date"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border"
@@ -120,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/border"
-
+                android:inputType="phone"
                 android:hint="+254 707070707 "/>
             <EditText
                 android:id="@+id/transactionDetails"

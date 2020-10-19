@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +17,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.models.Active;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InvoiceFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.internal.Utils;
+
+
 public class InvoiceFragment extends DialogFragment {
 
     ImageButton close;
@@ -33,44 +38,20 @@ public class InvoiceFragment extends DialogFragment {
     CheckBox reminder;
     Button submit;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    DatabaseReference invoice;
+    FirebaseDatabase firebaseDatabase;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     public InvoiceFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment InvoiceFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InvoiceFragment newInstance(String param1, String param2) {
-        InvoiceFragment fragment = new InvoiceFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -88,6 +69,9 @@ public class InvoiceFragment extends DialogFragment {
         reminder =(CheckBox) view.findViewById(R.id.reminder);
         submit = (Button) view.findViewById(R.id.submit);
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        invoice = firebaseDatabase.getReference("Invoice");
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +79,53 @@ public class InvoiceFragment extends DialogFragment {
             }
         });
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveInvoiceToDatabase();
+            }
+        });
+
+
+
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void saveInvoiceToDatabase() {
+        //Get values from user input
+
+        String uid = FirebaseAuth.getInstance().getUid();
+        String name_of_creditor = name.getText().toString();
+        int quantityOfItems =Integer.parseInt(quantity.getText().toString());
+        int price_per_item=Integer.parseInt(price.getText().toString());
+        String due_date = date.getText().toString();
+        String mobile_number= phoneNumber.getText().toString();
+        String transaction_details = transactionDetails.getText().toString();
+        int total_amount = quantityOfItems*price_per_item;
+        String invoice_id=invoice.push().getKey();
+
+        if (TextUtils.isEmpty(name_of_creditor)){
+            name.setError("Enter name");
+            return;
+        }else if (TextUtils.isEmpty(due_date)){
+            quantity.setError("Please fill");
+            return;
+        }
+        else if (TextUtils.isEmpty(mobile_number)){
+            phoneNumber.setError("Enter Phone Number");
+            return;
+        }
+        else if(TextUtils.isEmpty(transaction_details)){
+            transactionDetails.setError("If none please write None");
+            return;
+        }
+        else {
+            Active active = new Active(name_of_creditor,quantityOfItems,price_per_item,due_date,mobile_number,transaction_details,invoice_id,total_amount);
+            invoice.child(uid).child("active").push().setValue(active);
+            dismiss();
+        }
+
+
     }
 }

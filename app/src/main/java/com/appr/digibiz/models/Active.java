@@ -1,16 +1,21 @@
 package com.appr.digibiz.models;
 
+
 public class Active {
     String name_of_creditor ;
-    String total_amount ;
-    String quantity ;
-    String price_per_item ;
+    int total_amount ;
+    int quantity ;
+    int price_per_item ;
     String due_date ;
     String mobile_number ;
     String transaction_details;
     String invoice_id ;
 
-    public Active(String name_of_creditor, String total_amount, String quantity, String price_per_item, String due_date, String mobile_number, String transaction_details, String invoice_id) {
+    public Active(){
+
+    }
+
+    public Active(String name_of_creditor, int quantity, int price_per_item, String due_date, String mobile_number, String transaction_details, String invoice_id, int total_amount) {
         this.name_of_creditor = name_of_creditor;
         this.total_amount = total_amount;
         this.quantity = quantity;
@@ -29,27 +34,27 @@ public class Active {
         this.name_of_creditor = name_of_creditor;
     }
 
-    public String getTotal_amount() {
+    public int getTotal_amount() {
         return total_amount;
     }
 
-    public void setTotal_amount(String total_amount) {
+    public void setTotal_amount(int total_amount) {
         this.total_amount = total_amount;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getPrice_per_item() {
+    public int getPrice_per_item() {
         return price_per_item;
     }
 
-    public void setPrice_per_item(String price_per_item) {
+    public void setPrice_per_item(int price_per_item) {
         this.price_per_item = price_per_item;
     }
 
