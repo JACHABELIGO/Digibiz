@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/_130_pcs_ksh_100"
                     android:textColor="@color/colorSecondaryDark"
-                    android:textSize="16sp"/>
+                    android:textSize="14sp"/>
             </LinearLayout>
             <ImageView
                 android:layout_width="wrap_content"

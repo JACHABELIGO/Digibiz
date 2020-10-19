@@ -51,7 +51,6 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
     public class InventoryViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.product_name) TextView mProductName;
-        @BindView(R.id.quantity) TextView mQuantity;
         @BindView(R.id.price_per_item) TextView mPricePerItem;
 
         private String TAG = InventoryViewHolder.class.getSimpleName();
@@ -65,8 +64,8 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
         public void bindAvailableList(InventoryModel inventoryModel) {
             mProductName.setText(inventoryModel.getProduct_name());
-            mQuantity.setText(inventoryModel.getQuantity());
-            mPricePerItem.setText(inventoryModel.getPrice_per_item());
+            String priceAndItems = String.format("%s pcs @ Ksh. %s", inventoryModel.quantity, inventoryModel.getPrice_per_item());
+            mPricePerItem.setText(priceAndItems);
         }
 
     }

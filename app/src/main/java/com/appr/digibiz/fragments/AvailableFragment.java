@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
@@ -25,7 +26,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,6 +66,9 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
                 View view = inflater.inflate(R.layout.fragment_available, container, false);
                 ButterKnife.bind(this, view);
 
+                //initialize list
+                mAvailableList = new ArrayList<>();
+                getAvailableItems();
 //                click listeners
                 mFab.setOnClickListener(this);
                 return view;
@@ -78,17 +85,28 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
 
         private void getAvailableItems() {
                 reference = FirebaseDatabase.getInstance().getReference();
-                Query query = reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                Query query = reference.child(getString(R.string.db_node_inventory))
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .child(getString(R.string.db_node_available)).orderByKey();
                 query.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                hideEmptyView();
+                                showProgressBar();
                                 for (DataSnapshot singleSnapShot : snapshot.getChildren()){
                                         try {
                                                 if(singleSnapShot.exists()) {
-                                                        hideEmptyView();
-                                                        showProgressBar();
+                                                        InventoryModel inventoryItem = new InventoryModel();
+                                                        Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapShot.getValue();
+                                                        inventoryItem.setProduct_name(objectMap.get(getString(R.string.field_product_name)).toString());
+                                                        inventoryItem.setPrice_per_item(objectMap.get(getString(R.string.field_price_per_item)).toString());
+                                                        inventoryItem.setQuantity(objectMap.get(getString(R.string.field_quantity)).toString());
+                                                        //add the individual items on the list
+                                                        mAvailableList.add(inventoryItem);
                                                 }
+                                                setupAvailableList();
+                                                hideProgressBar();
+                                                showRecyclerView();
                                         } catch (NullPointerException e) {
                                                 Log.d(TAG, "ondataChange : NullPointerException" + e.getMessage());
                                         }
@@ -100,6 +118,13 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
 
                         }
                 });
+        }
+
+        private void setupAvailableList() {
+                mAdapter = new InventoryListAdapter(mAvailableList, getContext());
+                mAvailableRecyclerView.setAdapter(mAdapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                mAvailableRecyclerView.setLayoutManager(layoutManager);
         }
 
         private void hideProgressBar() {
