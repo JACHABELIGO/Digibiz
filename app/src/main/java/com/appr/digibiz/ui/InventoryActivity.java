@@ -15,7 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appr.digibiz.R;
-import com.appr.digibiz.adapter.ViewPagerAdapter;
+import com.appr.digibiz.adapter.InventoryPagerAdapter;
+
 import com.appr.digibiz.fragments.AvailableFragment;
 import com.appr.digibiz.fragments.OutOfStockFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +30,7 @@ public class InventoryActivity extends AppCompatActivity  implements View.OnClic
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+
     InventoryPagerAdapter viewPagerAdapter;
 
     @Override
