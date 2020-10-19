@@ -55,6 +55,9 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         rootView = inflater.inflate(R.layout.fragment_inventory_dialog, container, false);
         ButterKnife.bind(this,rootView);
 
+        //click listeners
+        mSubmintButton.setOnClickListener(this);
+
         final ViewGroup checkedViewGroup = (ViewGroup) rootView.findViewById(R.id.baseLayout);
         int selectedId = checkedViewGroup.getId();
         final ViewGroup checkeViewGroup = (ViewGroup) rootView.findViewById(selectedId);

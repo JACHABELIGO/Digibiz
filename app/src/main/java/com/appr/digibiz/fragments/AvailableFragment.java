@@ -31,8 +31,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AvailableFragment extends Fragment implements View.OnClickListener{
-        @BindView(R.id.availableListRecyclerView)
-        RecyclerView mAvailableListRecyclerView;
         @BindView(R.id.fab)
         FloatingActionButton mFab;
         @BindView(R.id.availableProgressBar)
@@ -119,11 +117,11 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
                 mAvailableRecyclerView.setVisibility(View.VISIBLE);
         }
         private void hideEmptyView() {
-                mAvailableRecyclerView.setVisibility(View.GONE);
+                mEmptyView.setVisibility(View.GONE);
         }
 
         private void showEmpty() {
-                mAvailableRecyclerView.setVisibility(View.VISIBLE);
+                mEmptyView.setVisibility(View.VISIBLE);
         }
 
 }
