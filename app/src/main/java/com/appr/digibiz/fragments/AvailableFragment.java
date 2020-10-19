@@ -91,8 +91,9 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
                 query.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                hideEmptyView();
                                 showProgressBar();
+                                hideRecyclerView();
+                                mAvailableList.clear();
                                 for (DataSnapshot singleSnapShot : snapshot.getChildren()){
                                         try {
                                                 if(singleSnapShot.exists()) {
@@ -104,12 +105,19 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
                                                         //add the individual items on the list
                                                         mAvailableList.add(inventoryItem);
                                                 }
-                                                setupAvailableList();
-                                                hideProgressBar();
-                                                showRecyclerView();
+
                                         } catch (NullPointerException e) {
                                                 Log.d(TAG, "ondataChange : NullPointerException" + e.getMessage());
                                         }
+                                }
+                                setupAvailableList();
+                                hideProgressBar();
+                                if(mAvailableList.isEmpty()) {
+                                        hideRecyclerView();
+                                        showEmpty();
+                                } else {
+                                        showRecyclerView();
+                                        hideEmptyView();
                                 }
                         }
 
