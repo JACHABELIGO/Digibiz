@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout_inventory"
-    tools:openDrawer="start"
     tools:context=".ui.InventoryActivity">
 
     <com.google.android.material.navigation.NavigationView
@@ -27,25 +26,9 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorTextIcons"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/colorPrimaryText"
-        app:tabIndicatorColor="@color/colorDivider"
-        app:tabTextColor="@color/colorPrimaryText">
+        android:elevation="5dp"
+        android:background="@color/colorSecondaryLight"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_available"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/available"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_outOfStock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/out_of_stock"/>
-
-    </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
@@ -30,6 +31,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:requiresFadingEdge="none"
             android:outlineAmbientShadowColor="@color/errorLightRed"
             android:layout_height="match_parent"
@@ -60,8 +62,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="40dp"
+        android:elevation="10dp"
+        android:layout_margin="20dp"
+        app:tint="@null"
+        app:borderWidth="0dp"
         android:backgroundTint="@color/colorAccent"
-        android:src="@drawable/baseline_add_white_48"
-        />
+        android:src="@drawable/baseline_add_white_24"/>
 </FrameLayout>
