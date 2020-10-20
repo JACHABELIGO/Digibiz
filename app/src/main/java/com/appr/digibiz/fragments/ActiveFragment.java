@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.adapter.ActiveListAdapter;
+import com.appr.digibiz.adapter.InventoryListAdapter;
 import com.appr.digibiz.fragments.InvoiceFragment;
 import com.appr.digibiz.models.Active;
+import com.appr.digibiz.models.InventoryModel;
+import com.appr.digibiz.ui.MainActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,6 +37,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,11 +54,11 @@ public class ActiveFragment extends Fragment {
     TextView textClipboard;
     ProgressBar progress;
     FloatingActionButton addActive;
-    FirebaseRecyclerAdapter<Active, FirebaseActiveViewHolder> activeViewHolder;
     DatabaseReference invoice;
-    FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     LinearLayout empty;
-    DataSnapshot data;
+
+    private List<Active> activeList = new ArrayList<>();
+    private ActiveListAdapter activeListAdapter;
 
 
     @Override
@@ -69,7 +79,8 @@ public class ActiveFragment extends Fragment {
         addActive = view.findViewById(R.id.fab);
         empty = view.findViewById(R.id.empty);
 
-       displayInvoice();
+
+        displayInvoiceDetails();
 
         addActive.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,93 +97,80 @@ public class ActiveFragment extends Fragment {
         return view;
     }
 
-    //Method to display invoice
-    public void displayInvoice(){
-        //invoice node
-        invoice = FirebaseDatabase.getInstance().getReference("Invoice");
+    private void displayInvoiceDetails() {
+        invoice = FirebaseDatabase.getInstance().getReference();
 
-        FirebaseRecyclerOptions<Active> options = new FirebaseRecyclerOptions.Builder<Active>().setQuery(invoice,Active.class).build();
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Active,FirebaseActiveViewHolder>(options) {
-            @NonNull
+        Query query = invoice.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").orderByKey();
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public FirebaseActiveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.active_list_item, parent, false);
-                return new FirebaseActiveViewHolder(view);
-            }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                showProgressBar();
+                hideRecyclerView();
+                activeList.clear();
+                for (DataSnapshot singleSnapShot : snapshot.getChildren()) {
+                    try {
+                        if (singleSnapShot.exists()) {
+                            Active active = new Active();
+                            Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapShot.getValue();
+                            active.setName_of_creditor(objectMap.get(getString(R.string.field_name_of_creditor)).toString());
+                            active.setDue_date(objectMap.get(getString(R.string.field_due_date)).toString());
+                            //  active.setTotal_amount((Integer) objectMap.get(getString(R.string.field_total_amount)));
+                            active.setTransaction_details(objectMap.get(getString(R.string.field_transaction_details)).toString());
 
-            @Override
-            protected void onBindViewHolder(@NonNull FirebaseActiveViewHolder holder, int position, @NonNull Active active) {
-                clipboard.setVisibility(View.INVISIBLE);
-                textClipboard.setVisibility(View.INVISIBLE);
-                progress.setVisibility(View.INVISIBLE);
-
-                Query query = invoice.child(FirebaseAuth.getInstance().getUid()).child("active").orderByKey();
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot oneInvoice :snapshot.getChildren()){
-                            System.out.println(oneInvoice.child("name_of_creditor").getValue().toString());
-                            String name_of_creditor = oneInvoice.child("name_of_creditor").getValue().toString();
-                            int total_amount = (int) oneInvoice.child("total_amount").getValue();
-                            String due_date = oneInvoice.child("due_date").getValue().toString();
-                            String transaction_details = oneInvoice.child("date").getValue().toString();
-
-                            holder.creditorName.setText(name_of_creditor);
-                            holder.amount.setText(total_amount);
-                            holder.date.setText(due_date);
-                            holder.transactionDetails.setText(transaction_details);
+                            activeList.add(active);
                         }
+
+                    } catch (NullPointerException ex) {
+
                     }
+                }
+                    activeListAdapter = new ActiveListAdapter(activeList,getContext());
+                    activeRecyclerView.setAdapter(activeListAdapter);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    activeRecyclerView.setLayoutManager(layoutManager);
+
+                    hideProgressBar();
+                    if(activeList.isEmpty()) {
+                        hideRecyclerView();
+                        showEmpty();
+                    } else {
+                        showRecyclerView();
+                        hideEmptyView();
+                    }
+                }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
-
             }
 
 
-        };
-        activeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        activeRecyclerView.setHasFixedSize(true);
-        activeRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
+            private void hideProgressBar() {
+                progress.setVisibility(View.GONE);
+            }
+
+            private void showProgressBar() {
+                progress.setVisibility(View.VISIBLE);
+            }
+            private void hideRecyclerView() {
+                activeRecyclerView.setVisibility(View.GONE);
+            }
+
+            private void showRecyclerView() {
+                activeRecyclerView.setVisibility(View.VISIBLE);
+            }
+            private void hideEmptyView() {
+                empty.setVisibility(View.GONE);
+            }
+
+            private void showEmpty() {
+                empty.setVisibility(View.VISIBLE);
+            }
     }
 
 
 
-    //Active RecyclerViewHolder
-    private static class FirebaseActiveViewHolder extends RecyclerView.ViewHolder {
-        View mView;
-        Context mContext;
-
-        TextView creditorName;
-        TextView amount;
-        TextView transactionDetails;
-        TextView date;
-
-
-        public FirebaseActiveViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mView = itemView;
-            mContext = itemView.getContext();
-        }
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (activeViewHolder != null) {
-            activeViewHolder.startListening();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (activeViewHolder != null) {
-            activeViewHolder.stopListening();
-        }
-    }
-}
