@@ -1,9 +1,11 @@
 package com.appr.digibiz.fragments;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -102,6 +104,7 @@ public class ActiveFragment extends Fragment {
 
         Query query = invoice.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").orderByKey();
         query.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 showProgressBar();
@@ -114,12 +117,11 @@ public class ActiveFragment extends Fragment {
                             Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapShot.getValue();
                             active.setName_of_creditor(objectMap.get(getString(R.string.field_name_of_creditor)).toString());
                             active.setDue_date(objectMap.get(getString(R.string.field_due_date)).toString());
-                            //  active.setTotal_amount((Integer) objectMap.get(getString(R.string.field_total_amount)));
+                            active.setTotal_amount(Math.toIntExact((Long) objectMap.get(getString(R.string.field_total_amount))));
                             active.setTransaction_details(objectMap.get(getString(R.string.field_transaction_details)).toString());
 
                             activeList.add(active);
                         }
-
                     } catch (NullPointerException ex) {
 
                     }
