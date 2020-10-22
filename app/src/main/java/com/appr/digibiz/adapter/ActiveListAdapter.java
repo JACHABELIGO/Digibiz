@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -16,26 +17,31 @@ import com.appr.digibiz.R;
 import com.appr.digibiz.fragments.InvoiceFragment;
 import com.appr.digibiz.fragments.SMSDialogFragment;
 import com.appr.digibiz.models.Active;
+import com.appr.digibiz.utils.ActiveViewClickListener;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.ActiveViewHolder> {
+
     List<Active> activeList;
     Context context;
+    private final ActiveViewClickListener listener;
 
-    public ActiveListAdapter(List<Active> activeList, Context context) {
+    public ActiveListAdapter(List<Active> activeList, Context context, ActiveViewClickListener activeViewClickListener) {
         this.activeList = activeList;
         this.context = context;
+        this.listener = activeViewClickListener;
     }
 
     @NonNull
     @Override
     public ActiveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.active_list_item, parent, false);
-        ActiveListAdapter.ActiveViewHolder activeViewHolder = new ActiveListAdapter.ActiveViewHolder(view);
+        ActiveListAdapter.ActiveViewHolder activeViewHolder = new ActiveListAdapter.ActiveViewHolder(view, listener);
 
         return activeViewHolder;
     }
@@ -50,7 +56,7 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         return activeList.size();
     }
 
-    public class ActiveViewHolder extends RecyclerView.ViewHolder{
+    public class ActiveViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.creditorName)
         TextView creditorName;
@@ -62,12 +68,15 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
 
        // private String TAG = InventoryListAdapter.InventoryViewHolder.class.getSimpleName();
         private Context context;
+        private WeakReference<ActiveViewClickListener> listenerWeakReference;
 
 
-        public ActiveViewHolder(@NonNull View itemView) {
+        public ActiveViewHolder(@NonNull View itemView, ActiveViewClickListener listener) {
             super(itemView);
+            listenerWeakReference = new WeakReference<>(listener);
             ButterKnife.bind(this,itemView);
             context = itemView.getContext();
+            mSendMessage.setOnClickListener(this);
         }
 
         public void bindActiveList(Active active) {
@@ -75,6 +84,14 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
             amount.setText(String.valueOf(active.getTotal_amount()));
             transactionDetails.setText(String.valueOf(active.getTransaction_details()));
             date.setText(String.valueOf(active.getDue_date()));
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(view.getId() == mSendMessage.getId()) {
+                Toast.makeText(view.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            }
+            listenerWeakReference.get().onPositionClicked(getAdapterPosition());
         }
     }
 }
