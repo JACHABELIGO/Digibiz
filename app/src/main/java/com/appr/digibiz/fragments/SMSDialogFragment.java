@@ -31,7 +31,6 @@ public class SMSDialogFragment extends DialogFragment implements View.OnClickLis
 
     public static SMSDialogFragment newInstance(String param1, String param2) {
         SMSDialogFragment fragment = new SMSDialogFragment();
-
         return fragment;
     }
 
@@ -42,9 +41,19 @@ public class SMSDialogFragment extends DialogFragment implements View.OnClickLis
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sms_dialog, container, false);
+        ButterKnife.bind(this, view);
+        mSendMessage.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
     public void onClick(View view) {
         if(view == mSendMessage) {
             sendSMSMessage();
+            dismiss();
         }
     }
 
@@ -55,11 +64,5 @@ public class SMSDialogFragment extends DialogFragment implements View.OnClickLis
         smsManager.sendTextMessage(number, null, message, null, null);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sms_dialog, container, false);
-        ButterKnife.bind(this, view);
-        return view;
-    }
+
 }
