@@ -4,12 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.fragments.InvoiceFragment;
+import com.appr.digibiz.fragments.SMSDialogFragment;
 import com.appr.digibiz.models.Active;
 
 import java.util.List;
@@ -45,16 +50,19 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         return activeList.size();
     }
 
-    public class ActiveViewHolder extends RecyclerView.ViewHolder {
+    public class ActiveViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.creditorName)
         TextView creditorName;
         @BindView(R.id.amount) TextView amount;
         @BindView(R.id.transactionDetails) TextView transactionDetails;
         @BindView(R.id.date) TextView date;
+        @BindView(R.id.sendMessage)
+        ImageButton mSendMessage;
 
        // private String TAG = InventoryListAdapter.InventoryViewHolder.class.getSimpleName();
         private Context context;
+
 
         public ActiveViewHolder(@NonNull View itemView) {
             super(itemView);
