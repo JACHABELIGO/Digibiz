@@ -27,6 +27,7 @@ import com.appr.digibiz.fragments.InvoiceFragment;
 import com.appr.digibiz.models.Active;
 import com.appr.digibiz.models.InventoryModel;
 import com.appr.digibiz.ui.MainActivity;
+import com.appr.digibiz.utils.ActiveViewClickListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -124,7 +125,17 @@ public class ActiveFragment extends Fragment {
 
                     }
                 }
-                    activeListAdapter = new ActiveListAdapter(activeList,getContext());
+                    activeListAdapter = new ActiveListAdapter(activeList, getContext(), new ActiveViewClickListener() {
+                        @Override
+                        public void onPositionClicked(int position) {
+
+                        }
+
+                        @Override
+                        public void onLongClicked(int position) {
+
+                        }
+                    });
                     activeRecyclerView.setAdapter(activeListAdapter);
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                     activeRecyclerView.setLayoutManager(layoutManager);
