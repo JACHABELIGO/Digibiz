@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Digibiz</string>
 
-<!--    firebase node names-->
+    <!--    firebase node names-->
     <string name="db_node_users">users</string>
     <string name="db_node_invoice">invoice</string>
     <string name="db_node_inventory">inventory</string>
@@ -11,12 +11,12 @@
     <string name="db_node_available">available</string>
     <string name="db_node_out_of_stock">out_of_stock</string>
 
-<!--    firebase field names-->
+    <!--    firebase field names-->
     <string name="field_business_name">business_name</string>
     <string name="field_email">email</string>
     <string name="field_phone_number">phone_number</string>
     <string name="field_security_level">security_level</string>
-<!--    invoice -->
+    <!--    invoice -->
     <string name="field_name_of_creditor">name_of_creditor</string>
     <string name="field_total_amount">total_amount</string>
     <string name="field_quantity">quantity</string>
@@ -26,7 +26,7 @@
     <string name="field_transaction_details">transaction_details</string>
     <string name="field_push_id">push_id</string>
     <string name="field_customer_name">customer_name</string>
-<!--    inventory-->
+    <!--    inventory-->
     <string name="field_product_name">product_name</string>
 
 
@@ -46,11 +46,13 @@
     <string name="you_don_t_have_any_active_transactions">You don\'t have any active transactions!</string>
     <string name="inventory">Inventory</string>
 
-<!--    Navigation drawer descriptions-->
+    <!--    Navigation drawer descriptions-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="your_inventory_is_currently_empty">Your Inventory is currently empty</string>
     <string name="delete_button">delete_button</string>
     <string name="_130_pcs_ksh_100">130 pcs @ Ksh. 100</string>
     <string name="productName">Phillips 40v Bulbs</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
