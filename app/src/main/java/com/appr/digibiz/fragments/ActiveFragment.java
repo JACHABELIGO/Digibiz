@@ -125,7 +125,7 @@ public class ActiveFragment extends Fragment {
 
                     }
                 }
-                    activeListAdapter = new ActiveListAdapter(activeList, getContext(), new ActiveViewClickListener() {
+                    activeListAdapter = new ActiveListAdapter(activeList, getActivity(), new ActiveViewClickListener() {
                         @Override
                         public void onPositionClicked(int position) {
 
@@ -137,7 +137,7 @@ public class ActiveFragment extends Fragment {
                         }
                     });
                     activeRecyclerView.setAdapter(activeListAdapter);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     activeRecyclerView.setLayoutManager(layoutManager);
 
                     hideProgressBar();

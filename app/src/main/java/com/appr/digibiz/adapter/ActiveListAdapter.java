@@ -1,5 +1,6 @@
 package com.appr.digibiz.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -89,7 +91,9 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         @Override
         public void onClick(View view) {
             if(view.getId() == mSendMessage.getId()) {
-                Toast.makeText(view.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                SMSDialogFragment smsDialogFragment = new SMSDialogFragment();
+                smsDialogFragment.show(manager, "SMS Dialog Fragment");
             }
             listenerWeakReference.get().onPositionClicked(getAdapterPosition());
         }
