@@ -18,12 +18,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdapter.InventoryViewHolder > {
-    //TODO change here
     private List<InventoryModel> availableList;
     private Context context;
 
     public InventoryListAdapter(List<InventoryModel> availableList, Context context) {
-        //TODO change here
         this.availableList = availableList;
         this.context = context;
     }
@@ -31,7 +29,6 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
     @NonNull
     @Override
     public InventoryListAdapter.InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //TODO change here
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
         InventoryListAdapter.InventoryViewHolder viewHolder = new InventoryListAdapter.InventoryViewHolder(view);
         return viewHolder;
@@ -39,13 +36,11 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
     @Override
     public void onBindViewHolder(@NonNull InventoryListAdapter.InventoryViewHolder holder, int position) {
-        //TODO change here
         holder.bindAvailableList(availableList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        //TODO change here
         return availableList.size();
     }
 
