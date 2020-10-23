@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +22,16 @@ import butterknife.ButterKnife;
 public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdapter.InventoryViewHolder > {
     private List<InventoryModel> availableList;
     private Context context;
+//    onItemClickListener mOnItemClickListener;
 
     public InventoryListAdapter(List<InventoryModel> availableList, Context context) {
         this.availableList = availableList;
         this.context = context;
     }
+
+//    public interface onItemClickListener {
+//        void onDeleteClick(int position);
+//    }
 
     @NonNull
     @Override
@@ -68,7 +74,19 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
         @Override
         public void onClick(View view) {
-
+            if (view.equals(mDeleteBtn));
+            removeAt(getAdapterPosition());
         }
+//        else if (onItemClickListener != null) {
+//            mOnItemClickListener.onDeleteClick(view, getAdapterPosition());
+//        }
+    }
+
+//    public void setOnItemClickListener(final OnClickListener)
+
+    private void removeAt(int position) {
+        availableList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, availableList.size());
     }
 }
