@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,7 +48,7 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
     public class InventoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.product_name) TextView mProductName;
         @BindView(R.id.price_per_item) TextView mPricePerItem;
-        @BindView(R.id.)
+        @BindView(R.id.delete_btn) ImageView mDeleteBtn;
 
         private String TAG = InventoryViewHolder.class.getSimpleName();
         private Context context;
@@ -56,6 +57,7 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
+            mDeleteBtn.setOnClickListener(this);
         }
 
         public void bindAvailableList(InventoryModel inventoryModel) {
@@ -64,5 +66,9 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
             mPricePerItem.setText(priceAndItems);
         }
 
+        @Override
+        public void onClick(View view) {
+
+        }
     }
 }
