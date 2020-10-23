@@ -44,9 +44,10 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         return availableList.size();
     }
 
-    public class InventoryViewHolder extends RecyclerView.ViewHolder {
+    public class InventoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.product_name) TextView mProductName;
         @BindView(R.id.price_per_item) TextView mPricePerItem;
+        @BindView(R.id.)
 
         private String TAG = InventoryViewHolder.class.getSimpleName();
         private Context context;
