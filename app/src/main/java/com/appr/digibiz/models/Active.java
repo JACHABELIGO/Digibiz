@@ -1,6 +1,9 @@
 package com.appr.digibiz.models;
 
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Active {
     String name_of_creditor ;
     int total_amount ;

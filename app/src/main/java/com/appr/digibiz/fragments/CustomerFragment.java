@@ -1,63 +1,62 @@
 package com.appr.digibiz.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.adapter.ActiveListAdapter;
+import com.appr.digibiz.adapter.CustomerListAdapter;
+import com.appr.digibiz.models.Active;
+import com.appr.digibiz.models.Customers;
+import com.appr.digibiz.models.Users;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CustomerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 public class CustomerFragment extends Fragment {
 
     FloatingActionButton addCustomers;
+    RecyclerView customersRecyclerView;
+    ProgressBar progress;
+    LinearLayout empty;
+    List<Users> usersList = new ArrayList<>();
+    DatabaseReference users;
+    CustomerListAdapter customerListAdapter;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public CustomerFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment customers.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CustomerFragment newInstance(String param1, String param2) {
-        CustomerFragment fragment = new CustomerFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -65,6 +64,10 @@ public class CustomerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_customers, container, false);
         addCustomers = (FloatingActionButton) view.findViewById(R.id.fab);
+        customersRecyclerView = view.findViewById(R.id.customers);
+        progress = view.findViewById(R.id.progress);
+        empty = view.findViewById(R.id.empty);
+
         addCustomers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,4 +78,77 @@ public class CustomerFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
+  /*  private  void  displayUsers(){
+        users = FirebaseDatabase.getInstance().getReference();
+        Query query = users.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                showProgressBar();
+                hideRecyclerView();
+                usersList.clear();
+
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    try {
+                        if (dataSnapshot.exists()){
+                            Users users = new Users();
+                            Map<String,Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
+                            users.setBusiness_name(map.get("business_name").toString());
+                            usersList.add(users);
+                        }
+
+                    }catch (NullPointerException ex){
+
+                    }
+                }
+                customerListAdapter = new CustomerListAdapter(usersList,getContext());
+                customersRecyclerView.setAdapter(customerListAdapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                customersRecyclerView.setLayoutManager(layoutManager);
+
+                hideProgressBar();
+                if(usersList.isEmpty()) {
+                    hideRecyclerView();
+                    showEmpty();
+                } else {
+                    showRecyclerView();
+                    hideEmptyView();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
+
+    private void hideProgressBar() {
+        progress.setVisibility(View.GONE);
+    }
+
+    private void showProgressBar() {
+        progress.setVisibility(View.VISIBLE);
+    }
+    private void hideRecyclerView() {
+        customersRecyclerView.setVisibility(View.GONE);
+    }
+
+    private void showRecyclerView() {
+        customersRecyclerView.setVisibility(View.VISIBLE);
+    }
+    private void hideEmptyView() {
+        empty.setVisibility(View.GONE);
+    }
+
+    private void showEmpty() {
+        empty.setVisibility(View.VISIBLE);
+    }*/
 }
