@@ -80,7 +80,6 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         public void onClick(View view) {
             if (view == mDeleteBtn){
                 removeAt(getAdapterPosition());
-                availableList.remove(getAdapterPosition());
             }
         }
     }
