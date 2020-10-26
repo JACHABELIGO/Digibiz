@@ -28,6 +28,7 @@
     <string name="field_customer_name">customer_name</string>
 <!--    inventory-->
     <string name="field_product_name">product_name</string>
+    <string name="field_inventory_id">inventory_id</string>
 
 
     <string name="name">Name</string>
