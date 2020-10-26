@@ -84,6 +84,7 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
                 }
         }
 
+
         private void getAvailableItems() {
                 reference = FirebaseDatabase.getInstance().getReference();
                 Query query = reference.child(getString(R.string.db_node_inventory))

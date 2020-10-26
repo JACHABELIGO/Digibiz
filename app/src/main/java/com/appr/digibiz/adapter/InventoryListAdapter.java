@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.InventoryModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -76,8 +78,10 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
         @Override
         public void onClick(View view) {
-            if (view.equals(mDeleteBtn));
-            removeAt(getAdapterPosition());
+            if (view == mDeleteBtn){
+                removeAt(getAdapterPosition());
+                availableList.remove(getAdapterPosition());
+            }
         }
     }
 
@@ -85,10 +89,9 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         InventoryModel inventoryToRemove =  availableList.get(position);
         String inventory_id = inventoryToRemove.getInventory_id();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        Log.d(TAG, "removeAt: inventory - " + inventoryToRemove);
-        reference.child(String.valueOf(R.string.db_node_inventory))
+        reference.child("inventory")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child(String.valueOf(R.string.db_node_available))
+                .child("available")
                 .child(inventory_id)
                 .removeValue();
 
@@ -96,7 +99,6 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
                 .setBackgroundTint(context.getResources().getColor(R.color.errorDarkRed))
                 .setActionTextColor(context.getResources().getColor(R.color.colorSecondaryLight))
                 .show();
-
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, availableList.size());
     }
