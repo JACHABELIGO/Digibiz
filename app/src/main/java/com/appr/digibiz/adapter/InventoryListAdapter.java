@@ -1,6 +1,7 @@
 package com.appr.digibiz.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.InventoryModel;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -22,21 +27,18 @@ import butterknife.ButterKnife;
 public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdapter.InventoryViewHolder > {
     private List<InventoryModel> availableList;
     private Context context;
-//    onItemClickListener mOnItemClickListener;
+    private View view;
+    private static final String TAG = "InventoryListAdapter";
 
     public InventoryListAdapter(List<InventoryModel> availableList, Context context) {
         this.availableList = availableList;
         this.context = context;
     }
 
-//    public interface onItemClickListener {
-//        void onDeleteClick(int position);
-//    }
-
     @NonNull
     @Override
     public InventoryListAdapter.InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
         InventoryListAdapter.InventoryViewHolder viewHolder = new InventoryListAdapter.InventoryViewHolder(view);
         return viewHolder;
     }
@@ -77,15 +79,24 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
             if (view.equals(mDeleteBtn));
             removeAt(getAdapterPosition());
         }
-//        else if (onItemClickListener != null) {
-//            mOnItemClickListener.onDeleteClick(view, getAdapterPosition());
-//        }
     }
 
-//    public void setOnItemClickListener(final OnClickListener)
-
     private void removeAt(int position) {
-        availableList.remove(position);
+        InventoryModel inventoryToRemove =  availableList.get(position);
+        String inventory_id = inventoryToRemove.getInventory_id();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Log.d(TAG, "removeAt: inventory - " + inventoryToRemove);
+        reference.child(String.valueOf(R.string.db_node_inventory))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(String.valueOf(R.string.db_node_available))
+                .child(inventory_id)
+                .removeValue();
+
+        Snackbar.make(view, "Inventory deleted", Snackbar.LENGTH_LONG)
+                .setBackgroundTint(context.getResources().getColor(R.color.errorDarkRed))
+                .setActionTextColor(context.getResources().getColor(R.color.colorSecondaryLight))
+                .show();
+
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, availableList.size());
     }
