@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.DeleteInvetoryDialogFragment">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.DeleteInvetoryDialogFragment"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:gravity="center"
+    android:background="@color/colorPrimaryLight"
+    android:paddingTop="20dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/colorSecondaryDark"
+        android:layout_marginStart="20dp"
+        android:layout_margin="20dp"
+        android:text="You can choose to either permanetly delete this item or transfer it to out of stock category"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete_permanently_btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/errorLightRed"
+        android:elevation="10dp"
+        android:text="Delete permanently" />
 
-</FrameLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/transfer_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textAllCaps="false"
+        android:elevation="10dp"
+        android:text="Transfer item" />
+
+</LinearLayout>
