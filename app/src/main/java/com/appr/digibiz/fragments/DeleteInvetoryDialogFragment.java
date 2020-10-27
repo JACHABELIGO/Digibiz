@@ -30,7 +30,7 @@ public class DeleteInvetoryDialogFragment extends DialogFragment {
         DeleteInvetoryDialogFragment fragment = new DeleteInvetoryDialogFragment();
         Bundle args = new Bundle();
         args.putParcelable("toDeleteDialog", Parcels.wrap(inventoryItem));
-        fragment.getParentFragmentManager().setFragmentResult("requestKey", args);
+        fragment.getChildFragmentManager().setFragmentResult("requestKey", args);
         return fragment;
     }
 
