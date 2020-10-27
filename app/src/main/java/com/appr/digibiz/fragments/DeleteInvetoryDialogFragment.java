@@ -20,6 +20,7 @@ import com.appr.digibiz.models.InventoryModel;
 import org.parceler.Parcels;
 
 public class DeleteInvetoryDialogFragment extends DialogFragment {
+    private InventoryModel resultInventory;
 
     public DeleteInvetoryDialogFragment() {
         // Required empty public constructor
@@ -28,21 +29,21 @@ public class DeleteInvetoryDialogFragment extends DialogFragment {
     // TODO: Rename and change types and number of parameters
     public static DeleteInvetoryDialogFragment newInstance(InventoryModel inventoryItem) {
         DeleteInvetoryDialogFragment fragment = new DeleteInvetoryDialogFragment();
-        Bundle args = new Bundle();
-        args.putParcelable("toDeleteDialog", Parcels.wrap(inventoryItem));
-        fragment.getChildFragmentManager().setFragmentResult("requestKey", args);
+//        Bundle args = new Bundle();
+//        args.putParcelable("toDeleteDialog", Parcels.wrap(inventoryItem));
+//        fragment.getParentFragmentManager().setFragmentResult("requestKey", args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                InventoryModel resultInventory = Parcels.unwrap(bundle.getParcelable("toDeleteDialog"));
-            }
-        });
+//        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
+//            @Override
+//            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+//                resultInventory = Parcels.unwrap(bundle.getParcelable("toDeleteDialog"));
+//            }
+//        });
     }
 
     @Override

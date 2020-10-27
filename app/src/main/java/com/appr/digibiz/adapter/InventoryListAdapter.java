@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -93,8 +94,10 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         //not entirely sure how this works
         InventoryModel inventoryToRemove =  availableList.get(position);
         DeleteInvetoryDialogFragment dialogFragment = DeleteInvetoryDialogFragment.newInstance(inventoryToRemove);
-        FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+        FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
         dialogFragment.show(fragmentManager, "Delete Inventory Dialog");
+
+
 //        String inventory_id = inventoryToRemove.getInventory_id();
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 //        reference.child("inventory")
