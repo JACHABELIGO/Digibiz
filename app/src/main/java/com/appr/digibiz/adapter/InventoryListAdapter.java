@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.fragments.DeleteInvetoryDialogFragment;
+import com.appr.digibiz.fragments.InventoryDialogFragment;
 import com.appr.digibiz.models.InventoryModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -79,26 +82,29 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         @Override
         public void onClick(View view) {
             if (view == mDeleteBtn){
-                removeAt(getAdapterPosition());
+                createDeleteInventoryDialog(getAdapterPosition());
             }
         }
     }
 
-    private void removeAt(int position) {
+    private void createDeleteInventoryDialog(int position) {
         InventoryModel inventoryToRemove =  availableList.get(position);
-        String inventory_id = inventoryToRemove.getInventory_id();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("inventory")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("available")
-                .child(inventory_id)
-                .removeValue();
-
-        Snackbar.make(view, "Inventory deleted", Snackbar.LENGTH_LONG)
-                .setBackgroundTint(context.getResources().getColor(R.color.errorDarkRed))
-                .setActionTextColor(context.getResources().getColor(R.color.colorSecondaryLight))
-                .show();
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, availableList.size());
+        DeleteInvetoryDialogFragment dialogFragment = DeleteInvetoryDialogFragment.newInstance(inventoryToRemove);
+        FragmentManager fragmentManager = dialogFragment.getParentFragmentManager();
+        dialogFragment.show()
+//        String inventory_id = inventoryToRemove.getInventory_id();
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+//        reference.child("inventory")
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .child("available")
+//                .child(inventory_id)
+//                .removeValue();
+//
+//        Snackbar.make(view, "Inventory deleted", Snackbar.LENGTH_LONG)
+//                .setBackgroundTint(context.getResources().getColor(R.color.errorDarkRed))
+//                .setActionTextColor(context.getResources().getColor(R.color.colorSecondaryLight))
+//                .show();
+//        notifyItemRemoved(position);
+//        notifyItemRangeChanged(position, availableList.size());
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
@@ -18,16 +19,18 @@ import com.appr.digibiz.models.InventoryModel;
 
 import org.parceler.Parcels;
 
-public class DeleteInvetoryDialogFragment extends Fragment {
+public class DeleteInvetoryDialogFragment extends DialogFragment {
 
     public DeleteInvetoryDialogFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static DeleteInvetoryDialogFragment newInstance(String param1, String param2) {
+    public static DeleteInvetoryDialogFragment newInstance(InventoryModel inventoryItem) {
         DeleteInvetoryDialogFragment fragment = new DeleteInvetoryDialogFragment();
-
+        Bundle args = new Bundle();
+        args.putParcelable("toDeleteDialog", Parcels.wrap(inventoryItem));
+        fragment.getParentFragmentManager().setFragmentResult("requestKey", args);
         return fragment;
     }
 
