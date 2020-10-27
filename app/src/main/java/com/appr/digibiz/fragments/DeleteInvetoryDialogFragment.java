@@ -2,13 +2,21 @@ package com.appr.digibiz.fragments;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 
+import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
+
 import com.appr.digibiz.R;
+import com.appr.digibiz.models.InventoryModel;
+
+import org.parceler.Parcels;
 
 public class DeleteInvetoryDialogFragment extends Fragment {
 
@@ -26,6 +34,12 @@ public class DeleteInvetoryDialogFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+                InventoryModel resultInventory = Parcels.unwrap(bundle.getParcelable("toDeleteDialog"));
+            }
+        });
     }
 
     @Override
