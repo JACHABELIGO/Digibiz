@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private int SEND_SMS_PERMISSION_CODE = 1;
     @BindView(R.id.to_Inventory)
     CardView mToInventory;
     @BindView(R.id.to_Invoice)

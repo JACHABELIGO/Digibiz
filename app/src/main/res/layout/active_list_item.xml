@@ -85,13 +85,13 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/sendMessage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:src="@drawable/ic_baseline_send_24"
-                        android:contentDescription="send_button" />
+                        <ImageButton
+                            android:id="@+id/sendMessage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/white"
+                            android:contentDescription="send_button"
+                            android:src="@drawable/ic_baseline_send_24" />
                     <ImageButton
                         android:id="@+id/delete"
                         android:layout_width="wrap_content"
