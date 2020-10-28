@@ -12,13 +12,17 @@ import androidx.fragment.app.DialogFragment;
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.InventoryModel;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DeleteInvetoryDialogFragment extends DialogFragment {
+public class DeleteInvetoryDialogFragment extends DialogFragment implements View.OnClickListener{
 
     @BindView(R.id.delete_product_name)
     TextView mProductName;
@@ -26,7 +30,7 @@ public class DeleteInvetoryDialogFragment extends DialogFragment {
     MaterialButton mPermanent;
     @BindView(R.id.delete_transfer_btn)
     MaterialButton mTransfer;
-    private InventoryModel resultInventory;
+    private InventoryModel inventoryToBeDeleted;
 
     public DeleteInvetoryDialogFragment() {
         // Required empty public constructor
@@ -52,6 +56,34 @@ public class DeleteInvetoryDialogFragment extends DialogFragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_delete_invetory_dialog, container, false);
         ButterKnife.bind(this, view);
+        //we unwrap the parsed object and set it to a global variable
+        inventoryToBeDeleted = Parcels.unwrap(getArguments().getParcelable("toDeleteDialog"));
+        mProductName.setText(inventoryToBeDeleted.getProduct_name());
+        //click listeners
         return  view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == mPermanent) {
+            String inventory_id = inventoryToBeDeleted.getInventory_id();
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+            reference.child("inventory")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("available")
+                    .child(inventory_id)
+                    .removeValue();
+            dismiss();
+        }
+    }
+
+    private void transferToOutOfStock() {
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+//        String inventoryId = inventoryToBeDeleted.getInventory_id();
+//        reference.child(getString(R.string.db_node_inventory))
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .child(getString(R.string.db_node_out_of_stock))
+//                .child(inventoryId)
+//                .setValue(inventoryToBeDeleted);
     }
 }

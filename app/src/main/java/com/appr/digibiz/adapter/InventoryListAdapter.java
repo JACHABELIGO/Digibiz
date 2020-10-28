@@ -96,21 +96,5 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
         DeleteInvetoryDialogFragment dialogFragment = DeleteInvetoryDialogFragment.newInstance(inventoryToRemove);
         FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
         dialogFragment.show(fragmentManager, "Delete Inventory Dialog");
-
-
-//        String inventory_id = inventoryToRemove.getInventory_id();
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//        reference.child("inventory")
-//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .child("available")
-//                .child(inventory_id)
-//                .removeValue();
-//
-//        Snackbar.make(view, "Inventory deleted", Snackbar.LENGTH_LONG)
-//                .setBackgroundTint(context.getResources().getColor(R.color.errorDarkRed))
-//                .setActionTextColor(context.getResources().getColor(R.color.colorSecondaryLight))
-//                .show();
-//        notifyItemRemoved(position);
-//        notifyItemRangeChanged(position, availableList.size());
     }
 }
