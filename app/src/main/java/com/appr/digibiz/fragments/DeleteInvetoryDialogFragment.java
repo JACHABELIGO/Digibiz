@@ -60,6 +60,8 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
         inventoryToBeDeleted = Parcels.unwrap(getArguments().getParcelable("toDeleteDialog"));
         mProductName.setText(inventoryToBeDeleted.getProduct_name());
         //click listeners
+        mPermanent.setOnClickListener(this);
+        mTransfer.setOnClickListener(this);
         return  view;
     }
 
