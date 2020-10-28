@@ -77,12 +77,12 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
         @Override
         public void onClick(View view) {
                 if (view == mFab) {
-
                         FragmentManager fm = getChildFragmentManager();
                         InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
                         inventoryDialogFragment.show(fm, "Available inventory");
                 }
         }
+
 
         private void getAvailableItems() {
                 reference = FirebaseDatabase.getInstance().getReference();
@@ -103,6 +103,7 @@ public class AvailableFragment extends Fragment implements View.OnClickListener{
                                                         inventoryItem.setProduct_name(objectMap.get(getString(R.string.field_product_name)).toString());
                                                         inventoryItem.setPrice_per_item(objectMap.get(getString(R.string.field_price_per_item)).toString());
                                                         inventoryItem.setQuantity(objectMap.get(getString(R.string.field_quantity)).toString());
+                                                        inventoryItem.setInventory_id(objectMap.get(getString(R.string.field_inventory_id)).toString());
                                                         //add the individual items on the list
                                                         mAvailableList.add(inventoryItem);
                                                 }

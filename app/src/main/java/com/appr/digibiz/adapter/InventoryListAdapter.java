@@ -1,6 +1,7 @@
 package com.appr.digibiz.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.fragments.DeleteInvetoryDialogFragment;
+import com.appr.digibiz.fragments.InventoryDialogFragment;
 import com.appr.digibiz.models.InventoryModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -22,21 +35,18 @@ import butterknife.ButterKnife;
 public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdapter.InventoryViewHolder > {
     private List<InventoryModel> availableList;
     private Context context;
-//    onItemClickListener mOnItemClickListener;
+    private View view;
+    private static final String TAG = "InventoryListAdapter";
 
     public InventoryListAdapter(List<InventoryModel> availableList, Context context) {
         this.availableList = availableList;
         this.context = context;
     }
 
-//    public interface onItemClickListener {
-//        void onDeleteClick(int position);
-//    }
-
     @NonNull
     @Override
     public InventoryListAdapter.InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.available_list_item, parent, false);
         InventoryListAdapter.InventoryViewHolder viewHolder = new InventoryListAdapter.InventoryViewHolder(view);
         return viewHolder;
     }
@@ -74,19 +84,17 @@ public class InventoryListAdapter extends RecyclerView.Adapter<InventoryListAdap
 
         @Override
         public void onClick(View view) {
-            if (view.equals(mDeleteBtn));
-            removeAt(getAdapterPosition());
+            if (view == mDeleteBtn){
+                createDeleteInventoryDialog(getAdapterPosition());
+            }
         }
-//        else if (onItemClickListener != null) {
-//            mOnItemClickListener.onDeleteClick(view, getAdapterPosition());
-//        }
     }
 
-//    public void setOnItemClickListener(final OnClickListener)
-
-    private void removeAt(int position) {
-        availableList.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, availableList.size());
+    private void createDeleteInventoryDialog(int position) {
+        //not entirely sure how this works
+        InventoryModel inventoryToRemove =  availableList.get(position);
+        DeleteInvetoryDialogFragment dialogFragment = DeleteInvetoryDialogFragment.newInstance(inventoryToRemove);
+        FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
+        dialogFragment.show(fragmentManager, "Delete Inventory Dialog");
     }
 }

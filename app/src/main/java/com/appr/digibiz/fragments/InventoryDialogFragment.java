@@ -93,6 +93,7 @@ public class InventoryDialogFragment extends DialogFragment implements View.OnCl
         newInventory.setProduct_name(product_name);
         newInventory.setPrice_per_item(price_per_item);
         newInventory.setQuantity(quantity);
+        newInventory.setInventory_id(inventoryId);
         reference.child(getString(R.string.db_node_inventory))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(getString(R.string.db_node_available))
