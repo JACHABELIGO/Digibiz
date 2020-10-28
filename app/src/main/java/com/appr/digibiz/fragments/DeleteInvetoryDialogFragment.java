@@ -75,15 +75,19 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
                     .removeValue();
             dismiss();
         }
+        if(view == mTransfer) {
+            transferToOutOfStock();
+        }
     }
 
     private void transferToOutOfStock() {
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//        String inventoryId = inventoryToBeDeleted.getInventory_id();
-//        reference.child(getString(R.string.db_node_inventory))
-//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .child(getString(R.string.db_node_out_of_stock))
-//                .child(inventoryId)
-//                .setValue(inventoryToBeDeleted);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        String inventoryId = inventoryToBeDeleted.getInventory_id();
+        reference.child(getString(R.string.db_node_inventory))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(getString(R.string.db_node_out_of_stock))
+                .child(inventoryId)
+                .setValue(inventoryToBeDeleted);
+        dismiss();
     }
 }
