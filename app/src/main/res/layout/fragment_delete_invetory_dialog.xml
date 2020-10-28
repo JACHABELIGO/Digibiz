@@ -12,13 +12,22 @@
     android:paddingTop="20dp">
 
     <TextView
+        android:id="@+id/delete_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSecondaryDark"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Product name"
+        android:textSize="18sp" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textColor="@color/colorSecondaryDark"
         android:layout_marginStart="20dp"
         android:layout_margin="20dp"
-        android:text="You can choose to either permanetly delete this item or transfer it to out of stock category"/>
+        android:text="* You can choose to either permanetly delete this item or transfer it to out of stock category"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/delete_permanently_btn"

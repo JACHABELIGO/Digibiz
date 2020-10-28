@@ -2,17 +2,11 @@ package com.appr.digibiz.fragments;
 
 import android.os.Bundle;
 
-
-import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentResultListener;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.InventoryModel;
@@ -29,9 +23,9 @@ public class DeleteInvetoryDialogFragment extends DialogFragment {
     // TODO: Rename and change types and number of parameters
     public static DeleteInvetoryDialogFragment newInstance(InventoryModel inventoryItem) {
         DeleteInvetoryDialogFragment fragment = new DeleteInvetoryDialogFragment();
-//        Bundle args = new Bundle();
-//        args.putParcelable("toDeleteDialog", Parcels.wrap(inventoryItem));
-//        fragment.getParentFragmentManager().setFragmentResult("requestKey", args);
+        Bundle args = new Bundle();
+        args.putParcelable("toDeleteDialog", Parcels.wrap(inventoryItem));
+        fragment.setArguments(args);
         return fragment;
     }
 
