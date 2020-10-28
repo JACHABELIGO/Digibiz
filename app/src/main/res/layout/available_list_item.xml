@@ -50,6 +50,7 @@
                     android:textSize="14sp"/>
             </LinearLayout>
             <ImageView
+                android:id="@+id/delete_btn"
                 android:clickable="true"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -59,6 +60,7 @@
                 android:contentDescription="@string/delete_button"
                 android:focusable="true" />
             <ImageView
+                android:id="@+id/edit_btn"
                 android:clickable="true"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

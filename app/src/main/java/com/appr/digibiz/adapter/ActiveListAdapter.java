@@ -23,9 +23,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.fragments.DeleteActive;
+import com.appr.digibiz.fragments.DeleteInvetoryDialogFragment;
 import com.appr.digibiz.fragments.InvoiceFragment;
 import com.appr.digibiz.fragments.SMSDialogFragment;
 import com.appr.digibiz.models.Active;
+import com.appr.digibiz.models.InventoryModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,16 +64,7 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
     EditText quantity ;
     EditText phoneNumber;
     CheckBox reminder ;
-    Active active ;
-    Intent intent ;
-
-    public Intent getIntent() {
-       return Parcels.unwrap(getIntent().getExtras().getParcelable("push_id"));
-    }
-
-
-
-
+    Active active;
 
     private final ActiveViewClickListener listener;
 
@@ -80,6 +74,7 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         this.context = context;
         this.listener = activeViewClickListener;
     }
+
 
     @NonNull
     @Override
@@ -132,20 +127,17 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
             transactionDetails.setText(String.valueOf(active.getTransaction_details()));
             date.setText(String.valueOf(active.getDue_date()));
 
-
-
             update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Active active = activeList.get(getLayoutPosition());
-                    showUpdateDialog(active.getInvoice_id());
+                    showUpdateDialog(getAdapterPosition());
                 }
             });
+
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Active active = activeList.get(getLayoutPosition());
-                    deleteInvoice(active.getInvoice_id());
+                   deleteDialog(getAdapterPosition());
                 }
             });
         }
@@ -162,7 +154,14 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
             listenerWeakReference.get().onPositionClicked(getAdapterPosition());
         }
     }
-    private void showUpdateDialog(String invoice_id) {
+    private void deleteDialog(int position) {
+        Active activeToDelete=  activeList.get(position);
+        DeleteActive deleteActive = DeleteActive.newInstance(activeToDelete);
+        FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
+        deleteActive.show(fragmentManager, "Dialog");
+    }
+    private void showUpdateDialog(int position) {
+        active = activeList.get(position);
 
         //  View view = LayoutInflater.from(getContext()).inflate(R.layout.active_list_item, parent, false);
 
@@ -183,7 +182,7 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
 
         AlertDialog alertDialog = dialog.create();
         alertDialog.show();
-        String finalInvoice_id = invoice_id;
+
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -196,8 +195,7 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
                 String transaction_details= transactionDetails.getText().toString();
                 int total_amount = quantityOfItems*price_per_item;
 
-
-                updateInvoice(name_of_creditor,quantityOfItems,price_per_item,due_date,mobile_number,transaction_details, finalInvoice_id,total_amount);
+                updateInvoice(name_of_creditor,quantityOfItems,price_per_item,due_date,mobile_number,transaction_details, active.getInvoice_id(),total_amount);
             }
         });
 
@@ -205,15 +203,19 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
 
 
     private Boolean updateInvoice(String name_of_creditor, int quantity, int price_per_item, String due_date, String mobile_number, String transaction_details, String invoice_id, int total_amount){
-        invoice =  FirebaseDatabase.getInstance().getReference().child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").child(String.valueOf(getIntent()));
+
+        invoice =  FirebaseDatabase.getInstance().getReference();
+        String id = active.getInvoice_id();
+        invoice.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").child(id);
         Active active = new Active(name_of_creditor,quantity,price_per_item,due_date,mobile_number,transaction_details,invoice_id,total_amount);
         invoice.setValue(active);
         Toast.makeText(context,"Update Successful",Toast.LENGTH_LONG).show();
         return  true;
 
-    }
-    private void deleteInvoice(String pushId) {
-        invoice =  FirebaseDatabase.getInstance().getReference().child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").child(String.valueOf(getIntent()));
+    };
+    private void deleteInvoice() {
+        String pushId = active.getInvoice_id();
+        invoice =  FirebaseDatabase.getInstance().getReference().child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").child(pushId);
         invoice.removeValue();
 
         Toast.makeText(context,"Invoice Deleted",Toast.LENGTH_LONG).show();

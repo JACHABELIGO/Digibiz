@@ -70,7 +70,7 @@ public class InvoiceFragment extends DialogFragment {
         submit = (Button) view.findViewById(R.id.submit);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        invoice = firebaseDatabase.getReference("Invoice");
+        invoice = firebaseDatabase.getReference();
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +95,8 @@ public class InvoiceFragment extends DialogFragment {
     private void saveInvoiceToDatabase() {
         //Get values from user input
 
-        String uid = FirebaseAuth.getInstance().getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String name_of_creditor = name.getText().toString();
         int quantityOfItems =Integer.parseInt(quantity.getText().toString());
         int price_per_item=Integer.parseInt(price.getText().toString());
@@ -103,7 +104,7 @@ public class InvoiceFragment extends DialogFragment {
         String mobile_number= phoneNumber.getText().toString();
         String transaction_details = transactionDetails.getText().toString();
         int total_amount = quantityOfItems*price_per_item;
-        String invoice_id=invoice.push().getKey();
+        String invoice_id=reference.child("Invoice").child(uid).child("active").push().getKey();
 
         if (TextUtils.isEmpty(name_of_creditor)){
             name.setError("Enter name");
@@ -121,8 +122,16 @@ public class InvoiceFragment extends DialogFragment {
             return;
         }
         else {
-            Active active = new Active(name_of_creditor,quantityOfItems,price_per_item,due_date,mobile_number,transaction_details,invoice_id,total_amount);
-            invoice.child(uid).child("active").push().setValue(active);
+            Active active = new Active();
+            active.setName_of_creditor(name_of_creditor);
+            active.setTransaction_details(transaction_details);
+            active.setTotal_amount(total_amount);
+            active.setDue_date(due_date);
+            active.setInvoice_id(invoice_id);
+            active.setMobile_number(mobile_number);
+            active.setQuantity(quantityOfItems);
+            active.setPrice_per_item(price_per_item);
+            reference.child("Invoice").child(uid).child("active").child(invoice_id).setValue(active);
             dismiss();
         }
 

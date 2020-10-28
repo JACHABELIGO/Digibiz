@@ -7,14 +7,16 @@ public class InventoryModel {
     public String product_name;
     public String quantity;
     public String price_per_item;
+    public String inventory_id;
 
     public InventoryModel() {
     }
 
-    public InventoryModel(String product_name, String quantity, String price_per_item) {
+    public InventoryModel(String product_name, String quantity, String price_per_item, String inventory_id) {
         this.product_name = product_name;
         this.quantity = quantity;
         this.price_per_item = price_per_item;
+        this.inventory_id = inventory_id;
     }
 
     public String getProduct_name() {
@@ -37,6 +39,14 @@ public class InventoryModel {
         return price_per_item;
     }
 
+    public String getInventory_id() {
+        return inventory_id;
+    }
+
+    public void setInventory_id(String inventory_id) {
+        this.inventory_id = inventory_id;
+    }
+
     public void setPrice_per_item(String price_per_item) {
         this.price_per_item = price_per_item;
     }
@@ -47,6 +57,7 @@ public class InventoryModel {
                 "product_name='" + product_name + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", price_per_item='" + price_per_item + '\'' +
+                ", inventory_id='" + inventory_id + '\'' +
                 '}';
     }
 }
