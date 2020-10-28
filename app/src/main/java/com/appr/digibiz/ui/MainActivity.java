@@ -1,13 +1,18 @@
 package com.appr.digibiz.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.appr.digibiz.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -63,12 +68,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view == mToInventory) {
             startActivity(new Intent(MainActivity.this, InventoryActivity.class));
         }
+
         if(view == mToInvoice) {
+            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(MainActivity.this, "You have already granted this permission!", Toast.LENGTH_SHORT).show();
+            } else {
+                requestSmsPermission();
+            }
             startActivity(new Intent(MainActivity.this, tabs.class));
         }
     }
 
-
+    private void requestSmsPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS));
+    }
 
 
 }
