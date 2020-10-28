@@ -66,14 +66,7 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
     @Override
     public void onClick(View view) {
         if(view == mPermanent) {
-            String inventory_id = inventoryToBeDeleted.getInventory_id();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            reference.child("inventory")
-                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .child("available")
-                    .child(inventory_id)
-                    .removeValue();
-            dismiss();
+            permanentlyDeleteInventory();
         }
         if(view == mTransfer) {
             transferToOutOfStock();
@@ -88,6 +81,17 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
                 .child(getString(R.string.db_node_out_of_stock))
                 .child(inventoryId)
                 .setValue(inventoryToBeDeleted);
+        dismiss();
+    }
+
+    private void permanentlyDeleteInventory() {
+        String inventory_id = inventoryToBeDeleted.getInventory_id();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("inventory")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("available")
+                .child(inventory_id)
+                .removeValue();
         dismiss();
     }
 }
