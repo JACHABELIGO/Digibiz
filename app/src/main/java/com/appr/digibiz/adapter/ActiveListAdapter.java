@@ -108,9 +108,8 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         @BindView(R.id.amount) TextView amount;
         @BindView(R.id.transactionDetails) TextView transactionDetails;
         @BindView(R.id.date) TextView date;
-
         @BindView(R.id.edit) ImageButton update;
-
+        @BindView(R.id.delete) ImageButton delete;
         @BindView(R.id.sendMessage)
         ImageButton mSendMessage;
 
@@ -142,7 +141,15 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
                     showUpdateDialog(active.getInvoice_id());
                 }
             });
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Active active = activeList.get(getLayoutPosition());
+                    deleteInvoice(active.getInvoice_id());
+                }
+            });
         }
+
 
 
         @Override
@@ -204,9 +211,17 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         Toast.makeText(context,"Update Successful",Toast.LENGTH_LONG).show();
         return  true;
 
+    }
+    private void deleteInvoice(String pushId) {
+        invoice =  FirebaseDatabase.getInstance().getReference().child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").child(String.valueOf(getIntent()));
+        invoice.removeValue();
+
+        Toast.makeText(context,"Invoice Deleted",Toast.LENGTH_LONG).show();
 
 
     }
+
+
 
 
 }
