@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class DeleteActive extends DialogFragment implements View.OnClickListener
     @BindView(R.id.delete_transfer_btn)
     MaterialButton mTransfer;
     private Active activeToDelete;
+
+    private static final String TAG = "DeleteActive";
 
 
     public DeleteActive() {
@@ -60,6 +63,8 @@ public class DeleteActive extends DialogFragment implements View.OnClickListener
 
        activeToDelete = Parcels.unwrap(getArguments().getParcelable("toDeleteDialog"));
        mProductName.setText(activeToDelete.getName_of_creditor());
+
+        Log.d(TAG, "onCreateView: the invoice id : " +  activeToDelete);
 
        //click listeners
         mPermanent.setOnClickListener(this);

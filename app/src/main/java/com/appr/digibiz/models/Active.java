@@ -15,7 +15,6 @@ public class Active {
     String invoice_id ;
 
     public Active(){
-
     }
 
     public Active(String name_of_creditor, int quantity, int price_per_item, String due_date, String mobile_number, String transaction_details, String invoice_id, int total_amount) {

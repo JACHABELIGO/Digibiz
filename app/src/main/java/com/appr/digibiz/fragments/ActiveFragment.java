@@ -126,6 +126,10 @@ public class ActiveFragment extends Fragment {
                             active.setDue_date(objectMap.get(getString(R.string.field_due_date)).toString());
                             active.setTotal_amount(Math.toIntExact((Long) objectMap.get(getString(R.string.field_total_amount))));
                             active.setTransaction_details(objectMap.get(getString(R.string.field_transaction_details)).toString());
+                            active.setInvoice_id(objectMap.get(getString(R.string.field_invoice_id)).toString());
+                            active.setPrice_per_item(Integer.parseInt(objectMap.get(getString(R.string.field_price_per_item)).toString()));
+                            active.setMobile_number(objectMap.get(getString(R.string.field_invoice_id)).toString());
+                            active.setQuantity(Integer.parseInt(objectMap.get(getString(R.string.field_invoice_id)).toString()));
 
                             activeList.add(active);
                         }
