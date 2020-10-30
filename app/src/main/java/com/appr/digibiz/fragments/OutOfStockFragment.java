@@ -131,9 +131,9 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view == mFab) {
-//            FragmentManager fm = getChildFragmentManager();
-//            InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
-//            inventoryDialogFragment.show(fm, "Out of stock inventory");
+            FragmentManager fm = getChildFragmentManager();
+            InventoryDialogFragment inventoryDialogFragment = new InventoryDialogFragment();
+            inventoryDialogFragment.show(fm, "Out of stock inventory");
         }
     }
 
@@ -151,4 +151,10 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
         mOutOfStockListRecyclerView.setVisibility(View.GONE);
     }
 
+    private void showEmpty() {
+        mEmptyView.setVisibility(View.VISIBLE);
+    }
+    private void hideEmptyView() {
+        mEmptyView.setVisibility(View.GONE);
+    }
 }
