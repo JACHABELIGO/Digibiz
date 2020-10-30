@@ -44,7 +44,7 @@ public class ResolvedFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference invoice;
 
-    List<Resolved> resolvedList= new ArrayList<>();
+    List<Active> resolvedList;
     ResolvedListAdapter resolvedListAdapter;
 
 
@@ -62,6 +62,7 @@ public class ResolvedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_resolved, container, false);
+        resolvedList = new ArrayList<>();
         empty =(LinearLayout) view.findViewById(R.id.empty);
         progress = (ProgressBar) view.findViewById(R.id.progress);
         recyclerView = (RecyclerView) view.findViewById(R.id.resolvedRecyclerView);
@@ -83,7 +84,7 @@ public class ResolvedFragment extends Fragment {
                 for (DataSnapshot singleSnapShot : snapshot.getChildren()) {
                     try {
                         if (singleSnapShot.exists()) {
-                            Resolved resolved = new Resolved();
+                            Active resolved = new Active();
                             Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapShot.getValue();
                             resolved.setName_of_creditor(objectMap.get(getString(R.string.field_name_of_creditor)).toString());
                             resolved.setDue_date(objectMap.get(getString(R.string.field_due_date)).toString());
@@ -96,10 +97,7 @@ public class ResolvedFragment extends Fragment {
 
                     }
                 }
-
-                recyclerView.setAdapter(resolvedListAdapter);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setLayoutManager(layoutManager);
+                setupResolvedListAdapter();
                 hideProgressBar();
                 if (resolvedList.isEmpty()) {
                     hideRecyclerView();
@@ -118,7 +116,12 @@ public class ResolvedFragment extends Fragment {
         });
     }
 
-
+    private void setupResolvedListAdapter() {
+        resolvedListAdapter = new ResolvedListAdapter(resolvedList, getContext());
+        recyclerView.setAdapter(resolvedListAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+    }
 
     private void hideProgressBar() {
         progress.setVisibility(View.GONE);
