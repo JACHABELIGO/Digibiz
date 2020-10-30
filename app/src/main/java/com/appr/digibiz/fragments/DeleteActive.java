@@ -1,20 +1,16 @@
 package com.appr.digibiz.fragments;
 
-import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.Active;
-import com.appr.digibiz.models.Resolved;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +29,7 @@ public class DeleteActive extends DialogFragment implements View.OnClickListener
     MaterialButton mPermanent;
     @BindView(R.id.delete_transfer_btn)
     MaterialButton mTransfer;
-    private  Active activeToDelete;
+    private Active activeToDelete;
 
 
     public DeleteActive() {
@@ -53,7 +49,6 @@ public class DeleteActive extends DialogFragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
