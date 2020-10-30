@@ -143,4 +143,12 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
     }
+
+    private void showRecyclerView() {
+        mOutOfStockListRecyclerView.setVisibility(View.VISIBLE);
+    }
+    private void hideRecyclerView() {
+        mOutOfStockListRecyclerView.setVisibility(View.GONE);
+    }
+
 }
