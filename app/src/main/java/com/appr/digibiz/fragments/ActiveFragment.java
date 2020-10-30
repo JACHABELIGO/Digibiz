@@ -1,8 +1,5 @@
 package com.appr.digibiz.fragments;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -17,25 +14,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.adapter.ActiveListAdapter;
-import com.appr.digibiz.adapter.InventoryListAdapter;
-import com.appr.digibiz.fragments.InvoiceFragment;
+
 import com.appr.digibiz.models.Active;
-import com.appr.digibiz.models.InventoryModel;
-import com.appr.digibiz.ui.MainActivity;
 import com.appr.digibiz.utils.ActiveViewClickListener;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,17 +34,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.parceler.Parcel;
-import org.parceler.Parcels;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 public class ActiveFragment extends Fragment {
@@ -69,6 +51,7 @@ public class ActiveFragment extends Fragment {
 
     private List<Active> activeList;
     private ActiveListAdapter activeListAdapter;
+    private static final String TAG = "ActiveFragment";
 
 
     @Override
@@ -99,8 +82,6 @@ public class ActiveFragment extends Fragment {
                 invoiceFragment.show(fm, "Sample Fragment");
             }
         });
-
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -134,7 +115,6 @@ public class ActiveFragment extends Fragment {
                             activeList.add(active);
                         }
                     } catch (NullPointerException ex) {
-
                     }
                 }
                     setupActiveList();
@@ -149,7 +129,6 @@ public class ActiveFragment extends Fragment {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
                 }
                 });
             }
