@@ -25,7 +25,7 @@ import org.parceler.Parcels;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DeleteActive extends DialogFragment {
+public class DeleteActive extends DialogFragment implements View.OnClickListener {
 
     @BindView(R.id.delete_product_name)
     TextView mProductName;
@@ -34,7 +34,6 @@ public class DeleteActive extends DialogFragment {
     @BindView(R.id.delete_transfer_btn)
     MaterialButton mTransfer;
     private  Active activeToDelete;
-    DatabaseReference reference;
 
 
     public DeleteActive() {
@@ -49,8 +48,6 @@ public class DeleteActive extends DialogFragment {
         args.putParcelable("toDeleteDialog", Parcels.wrap(active));
         fragment.setArguments(args);
         return fragment;
-
-
     }
 
     @Override
@@ -66,50 +63,47 @@ public class DeleteActive extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_delete_active, container, false);
         ButterKnife.bind( this,view);
 
+       activeToDelete = Parcels.unwrap(getArguments().getParcelable("toDeleteDialog"));
+       mProductName.setText(activeToDelete.getName_of_creditor());
 
-        reference = FirebaseDatabase.getInstance().getReference("Invoice");
+       //click listeners
+        mPermanent.setOnClickListener(this);
+        mTransfer.setOnClickListener(this);
 
-       activeToDelete= Parcels.unwrap(getArguments().getParcelable("toDeleteDialog"));
-        mProductName.setText(activeToDelete.getName_of_creditor());
-
-       mPermanent.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               deletePermanently();
-           }
-       });
-       mTransfer.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               transfer();
-               deletePermanently();
-           }
-       });
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == mPermanent) {
+            deletePermanently();
+            dismiss();
+        }
+        if(view == mTransfer) {
+            transfer();
+            deletePermanently();
+            dismiss();
+        }
     }
 
     private void transfer() {
         DatabaseReference reference =FirebaseDatabase.getInstance().getReference();
-        Resolved resolved = new Resolved();
-        resolved.setDue_date(activeToDelete.getDue_date());
-        resolved.setName_of_creditor(activeToDelete.getName_of_creditor());
-        resolved.setTotal_amount(activeToDelete.getTotal_amount());
-        resolved.setTransaction_details(activeToDelete.getTransaction_details());
-        resolved.setInvoice_id(reference.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("resolved").push().getKey());
-        reference.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("resolved").push().setValue(resolved);
-        dismiss();
+        String invoice_id = activeToDelete.getInvoice_id();
+        reference.child("Invoice")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("resolved")
+                .child(invoice_id)
+                .setValue(activeToDelete);
     }
 
     private void deletePermanently() {
         String invoice_id = activeToDelete.getInvoice_id();
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         reference.child("Invoice")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("active")
                 .child(invoice_id)
                 .removeValue();
-        dismiss();
         Toast.makeText(getContext(),"Invoice Deleted",Toast.LENGTH_LONG).show();
     }
 }

@@ -66,7 +66,6 @@ public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapte
             amount.setText(String.valueOf(resolved.getTotal_amount()));
             transactionDetails.setText(String.valueOf(resolved.getTransaction_details()));
             date.setText(String.valueOf(resolved.getDue_date()));
-
         }
 
     }
