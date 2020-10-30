@@ -136,4 +136,11 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
 //            inventoryDialogFragment.show(fm, "Out of stock inventory");
         }
     }
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
 }
