@@ -102,6 +102,7 @@ public class DeleteActive extends DialogFragment {
 
     private void deletePermanently() {
         String invoice_id = activeToDelete.getInvoice_id();
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         reference.child("Invoice")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

@@ -93,7 +93,6 @@ public class ActiveFragment extends Fragment {
         addActive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 FragmentManager fm = getChildFragmentManager();
                 InvoiceFragment invoiceFragment = new InvoiceFragment();
                 invoiceFragment.show(fm, "Sample Fragment");

@@ -1,78 +1,146 @@
 package com.appr.digibiz.fragments;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.adapter.ActiveListAdapter;
+import com.appr.digibiz.adapter.ResolvedListAdapter;
+import com.appr.digibiz.models.Active;
+import com.appr.digibiz.models.Resolved;
+import com.appr.digibiz.utils.ActiveViewClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ResolvedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.parceler.Parcels;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ResolvedFragment extends Fragment {
-    FloatingActionButton addResolved;
+    LinearLayout empty;
+    ProgressBar progress;
+    RecyclerView recyclerView;
+    DatabaseReference invoice;
+
+    List<Resolved> resolvedList= new ArrayList<>();
+    ResolvedListAdapter resolvedListAdapter;
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ResolvedFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment resolved.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ResolvedFragment newInstance(String param1, String param2) {
-        ResolvedFragment fragment = new ResolvedFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_resolved, container, false);
-        // Inflate the layout for this fragment
-        addResolved = (FloatingActionButton) view.findViewById(R.id.fab);
-        addResolved.setOnClickListener(new View.OnClickListener() {
+        empty =(LinearLayout) view.findViewById(R.id.empty);
+        progress = (ProgressBar) view.findViewById(R.id.progress);
+        recyclerView = (RecyclerView) view.findViewById(R.id.resolvedRecyclerView);
+        displayResolvedDetails();
+        return view;
+    }
+
+    private void displayResolvedDetails() {
+        invoice = FirebaseDatabase.getInstance().getReference();
+
+        Query query = invoice.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("resolved").orderByKey();
+        query.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onClick(View view) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                showProgressBar();
+                hideRecyclerView();
+                resolvedList.clear();
+                for (DataSnapshot singleSnapShot : snapshot.getChildren()) {
+                    try {
+                        if (singleSnapShot.exists()) {
+                            Resolved resolved = new Resolved();
+                            Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapShot.getValue();
+                            resolved.setName_of_creditor(objectMap.get(getString(R.string.field_name_of_creditor)).toString());
+                            resolved.setDue_date(objectMap.get(getString(R.string.field_due_date)).toString());
+                            resolved.setTotal_amount(Math.toIntExact((Long) objectMap.get(getString(R.string.field_total_amount))));
+                            resolved.setTransaction_details(objectMap.get(getString(R.string.field_transaction_details)).toString());
+
+                            resolvedList.add(resolved);
+                        }
+                    } catch (NullPointerException ex) {
+
+                    }
+                }
+
+                recyclerView.setAdapter(resolvedListAdapter);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                recyclerView.setLayoutManager(layoutManager);
+                hideProgressBar();
+                if (resolvedList.isEmpty()) {
+                    hideRecyclerView();
+                    showEmpty();
+                } else {
+                    showRecyclerView();
+                    hideEmptyView();
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-        return view;
     }
+
+
+
+    private void hideProgressBar() {
+        progress.setVisibility(View.GONE);
+    }
+
+    private void showProgressBar() {
+        progress.setVisibility(View.VISIBLE);
+    }
+    private void hideRecyclerView() {
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    private void showRecyclerView() {
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+    private void hideEmptyView() {
+        empty.setVisibility(View.GONE);
+    }
+
+    private void showEmpty() {
+        empty.setVisibility(View.VISIBLE);
+    }
+
+
 }

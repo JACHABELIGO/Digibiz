@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ResolvedFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/empty"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="411dp"
         android:orientation="vertical">
@@ -27,26 +27,20 @@
             android:text="You don't have any resolved transactions!"
             android:textSize="15dp" />
 
-
-
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resolvedRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:elevation="10dp"
-        android:layout_margin="20dp"
-        app:tint="@null"
-        app:borderWidth="0dp"
-        android:backgroundTint="@color/colorAccent"
-        android:src="@drawable/baseline_add_white_24"/>
 
 
 </FrameLayout>

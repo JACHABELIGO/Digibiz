@@ -4,7 +4,6 @@ public class Resolved {
     String name_of_creditor ;
     int total_amount ;
     String due_date ;
-
     String transaction_details;
     String invoice_id ;
 

@@ -213,15 +213,6 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
         return  true;
 
     };
-    private void deleteInvoice() {
-        String pushId = active.getInvoice_id();
-        invoice =  FirebaseDatabase.getInstance().getReference().child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").child(pushId);
-        invoice.removeValue();
-
-        Toast.makeText(context,"Invoice Deleted",Toast.LENGTH_LONG).show();
-
-
-    }
 
 
 

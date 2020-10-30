@@ -12,15 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
 import com.appr.digibiz.models.Resolved;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapter.ResolvedViewHolder> {
-    List<Resolved> resolvedList ;
+    List<Resolved> resolvedList;
     Context context;
 
     public ResolvedListAdapter(List<Resolved> resolvedList, Context context) {
@@ -56,17 +54,18 @@ public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapte
         @BindView(R.id.edit)
         ImageButton update;
         @BindView(R.id.delete) ImageButton delete;
-        private Context context;
+        Context context;
+
         public ResolvedViewHolder(@NonNull View itemView) {
             super(itemView);
-            context = itemView.getContext();
             ButterKnife.bind(this,itemView);
+            context = itemView.getContext();
         }
-        private  void bindResolved(Resolved resolved){
-            creditorName.setText(resolved.getName_of_creditor());
-            amount.setText(resolved.getTotal_amount());
-            transactionDetails.setText(resolved.getTransaction_details());
-            date.setText(resolved.getDue_date());
+        public void bindResolved(Resolved resolved){
+            creditorName.setText(String.valueOf(resolved.getName_of_creditor()));
+            amount.setText(String.valueOf(resolved.getTotal_amount()));
+            transactionDetails.setText(String.valueOf(resolved.getTransaction_details()));
+            date.setText(String.valueOf(resolved.getDue_date()));
 
         }
 
