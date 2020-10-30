@@ -70,9 +70,12 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
     public void onClick(View view) {
         if(view == mPermanent) {
             permanentlyDeleteInventory();
+            dismiss();
         }
         if(view == mTransfer) {
             transferToOutOfStock();
+            permanentlyDeleteInventory();
+            dismiss();
         }
     }
 
@@ -84,7 +87,6 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
                 .child(getString(R.string.db_node_out_of_stock))
                 .child(inventoryId)
                 .setValue(inventoryToBeDeleted);
-        dismiss();
     }
 
     private void permanentlyDeleteInventory() {
@@ -95,6 +97,5 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
                 .child("available")
                 .child(inventory_id)
                 .removeValue();
-        dismiss();
     }
 }

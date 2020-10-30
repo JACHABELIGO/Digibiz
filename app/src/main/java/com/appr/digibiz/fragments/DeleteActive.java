@@ -104,6 +104,5 @@ public class DeleteActive extends DialogFragment implements View.OnClickListener
                 .child("active")
                 .child(invoice_id)
                 .removeValue();
-        Toast.makeText(getContext(),"Invoice Deleted",Toast.LENGTH_LONG).show();
     }
 }
