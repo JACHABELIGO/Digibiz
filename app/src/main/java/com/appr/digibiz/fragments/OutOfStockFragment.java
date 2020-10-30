@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,9 +19,13 @@ import butterknife.ButterKnife;
 
 public class OutOfStockFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.outOfStockListRecyclerView)
-    RecyclerView outOfStockListRecyclerView;
+    RecyclerView mOutOfStockListRecyclerView;
     @BindView(R.id.fabOutOfStock)
     FloatingActionButton mFab;
+    @BindView(R.id.OutOfStockProgressBar)
+    ProgressBar mProgressBar;
+    @BindView(R.id.emptyOutOfStockList)
+    LinearLayout mEmptyView;
 
 
     public OutOfStockFragment() {
