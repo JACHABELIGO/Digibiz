@@ -64,10 +64,10 @@ public class ActiveFragment extends Fragment {
     TextView textClipboard;
     ProgressBar progress;
     FloatingActionButton addActive;
-    DatabaseReference invoice;
+    DatabaseReference reference;
     LinearLayout empty;
 
-    private List<Active> activeList = new ArrayList<>();
+    private List<Active> activeList;
     private ActiveListAdapter activeListAdapter;
 
 
@@ -87,6 +87,7 @@ public class ActiveFragment extends Fragment {
         addActive = view.findViewById(R.id.fab);
         empty = view.findViewById(R.id.empty);
 
+        activeList = new ArrayList<>();
 
         displayInvoiceDetails();
 
@@ -105,15 +106,10 @@ public class ActiveFragment extends Fragment {
     }
 
     private void displayInvoiceDetails() {
-        invoice = FirebaseDatabase.getInstance().getReference();
-
-        Query query = invoice.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").orderByKey();
-        String push_id = query.getRef().getKey();
-        Intent intent = new Intent(getContext(),ActiveListAdapter.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("push_id", String.valueOf(Parcels.wrap(push_id)));
-        intent.putExtras(bundle);
-
+        reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child("Invoice")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("active").orderByKey();
         query.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -137,21 +133,7 @@ public class ActiveFragment extends Fragment {
 
                     }
                 }
-                    activeListAdapter = new ActiveListAdapter(activeList, getActivity(), new ActiveViewClickListener() {
-                        @Override
-                        public void onPositionClicked(int position) {
-
-                        }
-
-                        @Override
-                        public void onLongClicked(int position) {
-
-                        }
-                    });
-                    activeRecyclerView.setAdapter(activeListAdapter);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                    activeRecyclerView.setLayoutManager(layoutManager);
-
+                    setupActiveList();
                     hideProgressBar();
                     if(activeList.isEmpty()) {
                         hideRecyclerView();
@@ -161,42 +143,50 @@ public class ActiveFragment extends Fragment {
                         hideEmptyView();
                     }
                 }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
+                }
                 });
             }
+        private void setupActiveList() {
+            activeListAdapter = new ActiveListAdapter(activeList, getActivity(), new ActiveViewClickListener() {
+                @Override
+                public void onPositionClicked(int position) {
 
+                }
 
+                @Override
+                public void onLongClicked(int position) {
 
-            private void hideProgressBar() {
-                progress.setVisibility(View.GONE);
-            }
+                }
+            });
+            activeRecyclerView.setAdapter(activeListAdapter);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            activeRecyclerView.setLayoutManager(layoutManager);
+        }
 
-            private void showProgressBar() {
-                progress.setVisibility(View.VISIBLE);
-            }
-            private void hideRecyclerView() {
-                activeRecyclerView.setVisibility(View.GONE);
-            }
+        private void hideProgressBar() {
+            progress.setVisibility(View.GONE);
+        }
 
-            private void showRecyclerView() {
-                activeRecyclerView.setVisibility(View.VISIBLE);
-            }
-            private void hideEmptyView() {
-                empty.setVisibility(View.GONE);
-            }
+        private void showProgressBar() {
+            progress.setVisibility(View.VISIBLE);
+        }
+        private void hideRecyclerView() {
+            activeRecyclerView.setVisibility(View.GONE);
+        }
 
-            private void showEmpty() {
-                empty.setVisibility(View.VISIBLE);
-            }
+        private void showRecyclerView() {
+            activeRecyclerView.setVisibility(View.VISIBLE);
+        }
+        private void hideEmptyView() {
+            empty.setVisibility(View.GONE);
+        }
 
-
-
-
+        private void showEmpty() {
+            empty.setVisibility(View.VISIBLE);
+        }
 
     }
 
