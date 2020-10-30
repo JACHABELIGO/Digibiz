@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
@@ -118,6 +119,13 @@ public class OutOfStockFragment extends Fragment implements View.OnClickListener
 
             }
         });
+    }
+
+    private void setupOutOfStockList() {
+        mAdapter = new InventoryListAdapter(mOutOfStockList, getContext());
+        mOutOfStockListRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mOutOfStockListRecyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
