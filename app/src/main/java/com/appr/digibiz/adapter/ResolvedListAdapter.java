@@ -1,16 +1,19 @@
 package com.appr.digibiz.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appr.digibiz.R;
+import com.appr.digibiz.models.Active;
 import com.appr.digibiz.models.Resolved;
 import java.util.List;
 
@@ -18,11 +21,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapter.ResolvedViewHolder> {
-    List<Resolved> resolvedList;
+    List<Active> activeList;
     Context context;
 
-    public ResolvedListAdapter(List<Resolved> resolvedList, Context context) {
-        this.resolvedList = resolvedList;
+    public ResolvedListAdapter(List<Active> activeList, Context context) {
+        this.activeList = activeList;
         this.context = context;
     }
 
@@ -36,12 +39,12 @@ public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ResolvedViewHolder holder, int position) {
-        holder.bindResolved(resolvedList.get(position));
+        holder.bindResolved(activeList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return resolvedList.size();
+        return activeList.size();
     }
 
     public class ResolvedViewHolder extends RecyclerView.ViewHolder {
@@ -52,8 +55,9 @@ public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapte
         @BindView(R.id.transactionDetails) TextView transactionDetails;
         @BindView(R.id.date) TextView date;
         @BindView(R.id.edit)
-        ImageButton update;
-        @BindView(R.id.delete) ImageButton delete;
+        ImageView update;
+        @BindView(R.id.delete)
+        ImageView delete;
         Context context;
 
         public ResolvedViewHolder(@NonNull View itemView) {
@@ -61,11 +65,11 @@ public class ResolvedListAdapter extends RecyclerView.Adapter<ResolvedListAdapte
             ButterKnife.bind(this,itemView);
             context = itemView.getContext();
         }
-        public void bindResolved(Resolved resolved){
-            creditorName.setText(String.valueOf(resolved.getName_of_creditor()));
-            amount.setText(String.valueOf(resolved.getTotal_amount()));
-            transactionDetails.setText(String.valueOf(resolved.getTransaction_details()));
-            date.setText(String.valueOf(resolved.getDue_date()));
+        public void bindResolved(Active active){
+            creditorName.setText(String.valueOf(active.getName_of_creditor()));
+            amount.setText(String.format("Ksh %s", active.getTotal_amount()));
+            transactionDetails.setText(String.valueOf(active.getTransaction_details()));
+            date.setText(String.valueOf(active.getDue_date()));
         }
 
     }
