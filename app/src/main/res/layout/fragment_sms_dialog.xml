@@ -27,11 +27,12 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:background="@null"
             android:id="@+id/cancel_action"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:contentDescription="@string/top_icon"
-            app:srcCompat="@drawable/ic_close_black_48dp" />
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_close_black_48dp"
+            android:contentDescription="cancel dialog" />
 
     </LinearLayout>
 

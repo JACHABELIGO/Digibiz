@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.appr.digibiz.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,7 +25,8 @@ public class SMSDialogFragment extends DialogFragment implements View.OnClickLis
     TextInputLayout mMessage;
     @BindView(R.id.reminder_phone)
     TextInputLayout mPhone;
-
+    @BindView(R.id.cancel_action)
+    ImageButton mCancel;
     public SMSDialogFragment() {
         // Required empty public constructor
     }
@@ -46,6 +48,7 @@ public class SMSDialogFragment extends DialogFragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_sms_dialog, container, false);
         ButterKnife.bind(this, view);
         mSendMessage.setOnClickListener(this);
+        mCancel.setOnClickListener(this);
         return view;
     }
 
@@ -53,6 +56,9 @@ public class SMSDialogFragment extends DialogFragment implements View.OnClickLis
     public void onClick(View view) {
         if(view == mSendMessage) {
             sendSMSMessage();
+            dismiss();
+        }
+        if(view == mCancel) {
             dismiss();
         }
     }
