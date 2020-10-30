@@ -10,10 +10,12 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/empty"
+            android:id="@+id/emptyOutOfStockList"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="411dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -25,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="@string/your_inventory_is_currently_empty"
+                android:text="@string/inventory_is_stocked"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -38,11 +40,10 @@
             android:id="@+id/outOfStockListRecyclerView"/>
 
         <ProgressBar
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="match_parent"
-            android:id="@+id/homeProgressBar"
+            android:id="@+id/OutOfStockProgressBar"
             style="?android:attr/progressBarStyle"/>
 
         <TextView
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/errorLightRed"
-            android:text="Error!" />
+            android:text="@string/error" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
