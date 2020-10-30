@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import butterknife.internal.Utils;
 
 
-public class InvoiceFragment extends DialogFragment {
+public class InvoiceFragment extends DialogFragment implements  View.OnClickListener {
 
     ImageButton close;
     EditText name;
@@ -38,11 +38,6 @@ public class InvoiceFragment extends DialogFragment {
     CheckBox reminder;
     Button submit;
 
-    DatabaseReference invoice;
-    FirebaseDatabase firebaseDatabase;
-
-
-
     public InvoiceFragment() {
         // Required empty public constructor
     }
@@ -51,7 +46,6 @@ public class InvoiceFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -65,46 +59,40 @@ public class InvoiceFragment extends DialogFragment {
         price = (EditText) view.findViewById(R.id.price);
         transactionDetails= (EditText) view.findViewById(R.id.transactionDetails);
         phoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
-        date = (EditText) view.findViewById(R.id.date) ;
+        date = (EditText) view.findViewById(R.id.date);
         reminder =(CheckBox) view.findViewById(R.id.reminder);
         submit = (Button) view.findViewById(R.id.submit);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        invoice = firebaseDatabase.getReference();
-
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveInvoiceToDatabase();
-            }
-        });
-
-
+        //click listeners
+        close.setOnClickListener(this);
+        submit.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view == close) {
+            dismiss();
+        }
+        if (view == submit) {
+            saveInvoiceToDatabase();
+        }
+    }
+
     private void saveInvoiceToDatabase() {
         //Get values from user input
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String name_of_creditor = name.getText().toString();
-        int quantityOfItems =Integer.parseInt(quantity.getText().toString());
-        int price_per_item=Integer.parseInt(price.getText().toString());
+        int quantityOfItems = Integer.parseInt(quantity.getText().toString());
+        int price_per_item = Integer.parseInt(price.getText().toString());
         String due_date = date.getText().toString();
-        String mobile_number= phoneNumber.getText().toString();
+        String mobile_number = phoneNumber.getText().toString();
         String transaction_details = transactionDetails.getText().toString();
         int total_amount = quantityOfItems*price_per_item;
-        String invoice_id=reference.child("Invoice").child(uid).child("active").push().getKey();
+        String invoice_id = reference.child("Invoice").child(uid).child("active").push().getKey();
 
         if (TextUtils.isEmpty(name_of_creditor)){
             name.setError("Enter name");

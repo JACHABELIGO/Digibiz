@@ -81,7 +81,6 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
     public ActiveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.active_list_item, parent, false);
         ActiveListAdapter.ActiveViewHolder activeViewHolder = new ActiveListAdapter.ActiveViewHolder(view, listener);
-
         return activeViewHolder;
     }
 
@@ -123,7 +122,7 @@ public class ActiveListAdapter extends RecyclerView.Adapter<ActiveListAdapter.Ac
 
         public void bindActiveList(Active active) {
             creditorName.setText(String.valueOf(active.getName_of_creditor()));
-            amount.setText(String.valueOf(active.getTotal_amount()));
+            amount.setText(String.format("Ksh %s", active.getTotal_amount()));
             transactionDetails.setText(String.valueOf(active.getTransaction_details()));
             date.setText(String.valueOf(active.getDue_date()));
 
