@@ -1,9 +1,13 @@
 package com.appr.digibiz.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -38,6 +44,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.parceler.Parcel;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,7 +93,6 @@ public class ActiveFragment extends Fragment {
         addActive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 FragmentManager fm = getChildFragmentManager();
                 InvoiceFragment invoiceFragment = new InvoiceFragment();
                 invoiceFragment.show(fm, "Sample Fragment");
@@ -100,7 +108,14 @@ public class ActiveFragment extends Fragment {
         invoice = FirebaseDatabase.getInstance().getReference();
 
         Query query = invoice.child("Invoice").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("active").orderByKey();
+        String push_id = query.getRef().getKey();
+        Intent intent = new Intent(getContext(),ActiveListAdapter.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("push_id", String.valueOf(Parcels.wrap(push_id)));
+        intent.putExtras(bundle);
+
         query.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 showProgressBar();
@@ -113,12 +128,11 @@ public class ActiveFragment extends Fragment {
                             Map<String, Object> objectMap = (HashMap<String, Object>) singleSnapShot.getValue();
                             active.setName_of_creditor(objectMap.get(getString(R.string.field_name_of_creditor)).toString());
                             active.setDue_date(objectMap.get(getString(R.string.field_due_date)).toString());
-                            //  active.setTotal_amount((Integer) objectMap.get(getString(R.string.field_total_amount)));
+                            active.setTotal_amount(Math.toIntExact((Long) objectMap.get(getString(R.string.field_total_amount))));
                             active.setTransaction_details(objectMap.get(getString(R.string.field_transaction_details)).toString());
 
                             activeList.add(active);
                         }
-
                     } catch (NullPointerException ex) {
 
                     }
@@ -179,6 +193,11 @@ public class ActiveFragment extends Fragment {
             private void showEmpty() {
                 empty.setVisibility(View.VISIBLE);
             }
+
+
+
+
+
     }
 
 
