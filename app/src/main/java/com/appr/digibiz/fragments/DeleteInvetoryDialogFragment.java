@@ -2,6 +2,7 @@ package com.appr.digibiz.fragments;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
     @BindView(R.id.delete_transfer_btn)
     MaterialButton mTransfer;
     private InventoryModel inventoryToBeDeleted;
+    private static final String TAG = "DeleteInvetoryDialogFra";
 
     public DeleteInvetoryDialogFragment() {
         // Required empty public constructor
@@ -59,6 +61,9 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
         //we unwrap the parsed object and set it to a global variable
         inventoryToBeDeleted = Parcels.unwrap(getArguments().getParcelable("toDeleteDialog"));
         mProductName.setText(inventoryToBeDeleted.getProduct_name());
+
+        Log.d(TAG, "onCreateView: inventory item" + inventoryToBeDeleted);
+
         //click listeners
         mPermanent.setOnClickListener(this);
         mTransfer.setOnClickListener(this);
@@ -69,9 +74,12 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
     public void onClick(View view) {
         if(view == mPermanent) {
             permanentlyDeleteInventory();
+            dismiss();
         }
         if(view == mTransfer) {
             transferToOutOfStock();
+            permanentlyDeleteInventory();
+            dismiss();
         }
     }
 
@@ -83,7 +91,6 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
                 .child(getString(R.string.db_node_out_of_stock))
                 .child(inventoryId)
                 .setValue(inventoryToBeDeleted);
-        dismiss();
     }
 
     private void permanentlyDeleteInventory() {
@@ -94,6 +101,5 @@ public class DeleteInvetoryDialogFragment extends DialogFragment implements View
                 .child("available")
                 .child(inventory_id)
                 .removeValue();
-        dismiss();
     }
 }

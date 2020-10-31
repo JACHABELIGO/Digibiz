@@ -1,6 +1,9 @@
 package com.appr.digibiz.models;
 
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Active {
     String name_of_creditor ;
     int total_amount ;
@@ -12,7 +15,6 @@ public class Active {
     String invoice_id ;
 
     public Active(){
-
     }
 
     public Active(String name_of_creditor, int quantity, int price_per_item, String due_date, String mobile_number, String transaction_details, String invoice_id, int total_amount) {
@@ -88,5 +90,19 @@ public class Active {
 
     public void setInvoice_id(String invoice_id) {
         this.invoice_id = invoice_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Active{" +
+                "name_of_creditor='" + name_of_creditor + '\'' +
+                ", total_amount=" + total_amount +
+                ", quantity=" + quantity +
+                ", price_per_item=" + price_per_item +
+                ", due_date='" + due_date + '\'' +
+                ", mobile_number='" + mobile_number + '\'' +
+                ", transaction_details='" + transaction_details + '\'' +
+                ", invoice_id='" + invoice_id + '\'' +
+                '}';
     }
 }

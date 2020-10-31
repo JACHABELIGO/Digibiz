@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.InvoiceFragment">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryLight"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Invoice"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_baseline_close_24" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.01dp"
+            android:background="#373636"
+            />
+
+        <LinearLayout
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:paddingTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/colorSecondaryDark"
+                android:background="@drawable/border"
+                android:hint="Name"
+                android:padding="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <EditText
+
+                    android:id="@+id/quantity"
+                    android:padding="10dp"
+                    android:layout_width="150dp"
+                    android:inputType="number"
+                    android:textColor="@color/colorSecondaryDark"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:hint="Quantity"/>
+                <EditText
+
+                    android:id="@+id/price"
+                    android:padding="10dp"
+                    android:textColor="@color/colorSecondaryDark"
+                    android:layout_width="150dp"
+                    android:inputType="number"
+                    android:layout_marginStart="20sp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:hint="Item Price"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/date"
+                    android:padding="10dp"
+                    android:inputType="date"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:hint="Due Date"/>
+                <CheckBox
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/reminder"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Set reminder"/>
+
+
+            </LinearLayout>
+
+            <EditText
+
+                android:id="@+id/phoneNumber"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:inputType="phone"
+                android:hint="+254 707070707 "/>
+            <EditText
+                android:id="@+id/transactionDetails"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:textColor="@color/colorSecondaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:hint="Transaction Details"/>
+
+            <Button
+                android:id="@+id/update"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:background="@drawable/button_brown"
+                android:text="Update"
+                android:textColor="@color/colorPrimaryLight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

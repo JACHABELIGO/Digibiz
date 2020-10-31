@@ -9,6 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/empty"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="411dp"
         android:orientation="vertical">
@@ -35,6 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
